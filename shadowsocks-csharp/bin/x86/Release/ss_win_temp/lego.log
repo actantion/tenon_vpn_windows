@@ -1,0 +1,77 @@
+2019-10-07 22:16:11,062 [ERROR] [config.cc][lego::common::Config::Get][23] invalid field[lego]
+2019-10-07 22:16:11,062 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[lego] key[bootstrap_net]
+2019-10-07 22:16:11,063 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[lego] key[http_port]
+2019-10-07 22:16:11,072 [ERROR] [config.cc][lego::common::Config::Get][23] invalid field[vpn]
+2019-10-07 22:16:11,449 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[AU]
+2019-10-07 22:16:11,449 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[BR]
+2019-10-07 22:16:11,449 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[CA]
+2019-10-07 22:16:11,484 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[DE]
+2019-10-07 22:16:11,485 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[FR]
+2019-10-07 22:16:11,498 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[HK]
+2019-10-07 22:16:11,498 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[ID]
+2019-10-07 22:16:11,524 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[JP]
+2019-10-07 22:16:11,524 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[KR]
+2019-10-07 22:16:11,524 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[NL]
+2019-10-07 22:16:11,524 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[NZ]
+2019-10-07 22:16:11,524 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[PT]
+2019-10-07 22:16:11,627 [ERROR] [base_dht.cc][lego::dht::BaseDht::Bootstrap][213] [dht]join[122.112.234.133][9001][000000001a000000835c0cd9e9a2a683df552ae97a9f50b3940a196119d63bed][000000001a000000fd13edab1d13aae59307115f38f91c16bf77ab17dd7f0bde] sent request.
+2019-10-07 22:16:11,628 [ERROR] [base_dht.cc][lego::dht::BaseDht::Bootstrap][213] [dht]join[119.3.15.76][9001][000000001a000000835c0cd9e9a2a683df552ae97a9f50b3940a196119d63bed][000000001a000000fd13edab1d13aae59307115f38f91c16bf77ab17dd7f0bde] sent request.
+2019-10-07 22:16:11,628 [ERROR] [base_dht.cc][lego::dht::BaseDht::Bootstrap][213] [dht]join[119.3.73.78][9001][000000001a000000835c0cd9e9a2a683df552ae97a9f50b3940a196119d63bed][000000001a000000fd13edab1d13aae59307115f38f91c16bf77ab17dd7f0bde] sent request.
+2019-10-07 22:16:21,632 [ERROR] [base_dht.cc][lego::dht::BaseDht::Bootstrap][218] [dht]join error.
+2019-10-07 22:16:21,632 [ERROR] [universal_manager.cc][lego::network::UniversalManager::CreateNetwork][106] [network]bootstrap universal network failed!
+2019-10-07 22:16:21,633 [ERROR] [vpn_client.cc][lego::client::VpnClient::InitNetworkSingleton][760] [client]create universal network failed!
+2019-10-07 22:16:21,633 [ERROR] [vpn_client.cc][lego::client::VpnClient::Init][367] [client]InitNetworkSingleton failed!
+2019-10-07 22:16:34,773 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[lego] key[first_instasll]
+2019-10-07 22:16:34,774 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[lego] key[bootstrap_net]
+2019-10-07 22:16:34,775 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[lego] key[http_port]
+2019-10-07 22:16:35,207 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[AU]
+2019-10-07 22:16:35,207 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[BR]
+2019-10-07 22:16:35,207 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[CA]
+2019-10-07 22:16:35,245 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[DE]
+2019-10-07 22:16:35,245 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[FR]
+2019-10-07 22:16:35,261 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[HK]
+2019-10-07 22:16:35,261 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[ID]
+2019-10-07 22:16:35,284 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[JP]
+2019-10-07 22:16:35,285 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[KR]
+2019-10-07 22:16:35,285 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[NL]
+2019-10-07 22:16:35,285 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[NZ]
+2019-10-07 22:16:35,285 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[PT]
+2019-10-07 22:16:35,367 [ERROR] [base_dht.cc][lego::dht::BaseDht::Bootstrap][213] [dht]join[122.112.234.133][9001][000000001a000000835c0cd9e9a2a683df552ae97a9f50b3940a196119d63bed][000000001a000000fd13edab1d13aae59307115f38f91c16bf77ab17dd7f0bde] sent request.
+2019-10-07 22:16:35,368 [ERROR] [base_dht.cc][lego::dht::BaseDht::Bootstrap][213] [dht]join[119.3.15.76][9001][000000001a000000835c0cd9e9a2a683df552ae97a9f50b3940a196119d63bed][000000001a000000fd13edab1d13aae59307115f38f91c16bf77ab17dd7f0bde] sent request.
+2019-10-07 22:16:35,368 [ERROR] [base_dht.cc][lego::dht::BaseDht::Bootstrap][213] [dht]join[119.3.73.78][9001][000000001a000000835c0cd9e9a2a683df552ae97a9f50b3940a196119d63bed][000000001a000000fd13edab1d13aae59307115f38f91c16bf77ab17dd7f0bde] sent request.
+2019-10-07 22:16:45,369 [ERROR] [base_dht.cc][lego::dht::BaseDht::Bootstrap][218] [dht]join error.
+2019-10-07 22:16:45,369 [ERROR] [universal_manager.cc][lego::network::UniversalManager::CreateNetwork][106] [network]bootstrap universal network failed!
+2019-10-07 22:16:45,369 [ERROR] [vpn_client.cc][lego::client::VpnClient::InitNetworkSingleton][760] [client]create universal network failed!
+2019-10-07 22:16:45,369 [ERROR] [vpn_client.cc][lego::client::VpnClient::Init][367] [client]InitNetworkSingleton failed!
+2019-10-07 22:17:10,684 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[lego] key[first_instasll]
+2019-10-07 22:17:10,684 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[lego] key[bootstrap_net]
+2019-10-07 22:17:10,686 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[lego] key[http_port]
+2019-10-07 22:17:11,158 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[AU]
+2019-10-07 22:17:11,158 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[BR]
+2019-10-07 22:17:11,158 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[CA]
+2019-10-07 22:17:11,180 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[DE]
+2019-10-07 22:17:11,180 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[FR]
+2019-10-07 22:17:11,192 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[HK]
+2019-10-07 22:17:11,192 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[ID]
+2019-10-07 22:17:11,221 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[JP]
+2019-10-07 22:17:11,221 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[KR]
+2019-10-07 22:17:11,221 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[NL]
+2019-10-07 22:17:11,221 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[NZ]
+2019-10-07 22:17:11,221 [ERROR] [config.cc][lego::common::Config::Get][29] invalid field[route] key[PT]
+2019-10-07 22:17:11,291 [ERROR] [base_dht.cc][lego::dht::BaseDht::Bootstrap][213] [dht]join[122.112.234.133][9001][000000001a000000835c0cd9e9a2a683df552ae97a9f50b3940a196119d63bed][000000001a000000fd13edab1d13aae59307115f38f91c16bf77ab17dd7f0bde] sent request.
+2019-10-07 22:17:11,291 [ERROR] [base_dht.cc][lego::dht::BaseDht::Bootstrap][213] [dht]join[119.3.15.76][9001][000000001a000000835c0cd9e9a2a683df552ae97a9f50b3940a196119d63bed][000000001a000000fd13edab1d13aae59307115f38f91c16bf77ab17dd7f0bde] sent request.
+2019-10-07 22:17:11,292 [ERROR] [base_dht.cc][lego::dht::BaseDht::Bootstrap][213] [dht]join[119.3.73.78][9001][000000001a000000835c0cd9e9a2a683df552ae97a9f50b3940a196119d63bed][000000001a000000fd13edab1d13aae59307115f38f91c16bf77ab17dd7f0bde] sent request.
+2019-10-07 22:17:11,475 [ERROR] [vpn_client.cc][lego::client::VpnClient::CreateClientUniversalNetwork][784] [network]create universal network[∑,—y=(¬ZÅNŸÅ‡¸÷])-ÁªûıS∑5óA∫÷·][32][031000001a000000835c0cd9e9a2a683df552ae97a9f50b3940a196119d63bed]
+2019-10-07 22:17:16,619 [ERROR] [base_dht.cc][lego::dht::BaseDht::Bootstrap][213] [dht]join[134.209.178.180][58822][031000001a000000835c0cd9e9a2a683df552ae97a9f50b3940a196119d63bed][03100000ed000000a1266fa79fd36bcc7cccf98973e91166a15f876f10df8c2d] sent request.
+2019-10-07 22:17:16,620 [ERROR] [base_dht.cc][lego::dht::BaseDht::Bootstrap][213] [dht]join[134.209.184.49][11440][031000001a000000835c0cd9e9a2a683df552ae97a9f50b3940a196119d63bed][03100000ed0000008c8cd35777dabd9252a5e66fbc2a5777291995b27abd0e30] sent request.
+2019-10-07 22:17:16,621 [ERROR] [base_dht.cc][lego::dht::BaseDht::Bootstrap][213] [dht]join[178.128.22.31][11594][031000001a000000835c0cd9e9a2a683df552ae97a9f50b3940a196119d63bed][0310000086000000897b67929def680719779bc46c156767c97635ef3064ee9c] sent request.
+2019-10-07 22:17:16,622 [ERROR] [base_dht.cc][lego::dht::BaseDht::Bootstrap][213] [dht]join[178.128.26.230][42046][031000001a000000835c0cd9e9a2a683df552ae97a9f50b3940a196119d63bed][031000008600000018eab8b1d609c988736a0b9085cd348bc0ba7d913859e640] sent request.
+2019-10-07 22:17:16,622 [ERROR] [base_dht.cc][lego::dht::BaseDht::Bootstrap][213] [dht]join[167.71.232.29][14975][031000001a000000835c0cd9e9a2a683df552ae97a9f50b3940a196119d63bed][0310000074000000bc668bbe52e9e2a37e29ac51afde828b39bd9bfee8950636] sent request.
+2019-10-07 22:17:16,623 [ERROR] [base_dht.cc][lego::dht::BaseDht::Bootstrap][213] [dht]join[167.71.224.241][10105][031000001a000000835c0cd9e9a2a683df552ae97a9f50b3940a196119d63bed][0310000074000000ba3930a466ada52981b72b3f08090d2e2d3bd4d41574a5df] sent request.
+2019-10-07 22:17:16,623 [ERROR] [base_dht.cc][lego::dht::BaseDht::Bootstrap][213] [dht]join[167.71.232.145][55450][031000001a000000835c0cd9e9a2a683df552ae97a9f50b3940a196119d63bed][03100000740000009a68b1ab78ead10671d5032521fdd55ec9d78c88101a837a] sent request.
+2019-10-07 22:17:16,624 [ERROR] [base_dht.cc][lego::dht::BaseDht::Bootstrap][213] [dht]join[167.71.170.154][62941][031000001a000000835c0cd9e9a2a683df552ae97a9f50b3940a196119d63bed][03100000380000007f638161d69fa19ad3961c884d909c927c9617119267b88f] sent request.
+2019-10-07 22:17:16,625 [ERROR] [base_dht.cc][lego::dht::BaseDht::Bootstrap][213] [dht]join[167.71.172.135][34711][031000001a000000835c0cd9e9a2a683df552ae97a9f50b3940a196119d63bed][03100000380000006e6df49977b8d9eabb62c163d1efd8b5c470640e4dc6a5f9] sent request.
+2019-10-07 22:17:16,625 [ERROR] [base_dht.cc][lego::dht::BaseDht::Bootstrap][213] [dht]join[167.71.113.28][22633][031000001a000000835c0cd9e9a2a683df552ae97a9f50b3940a196119d63bed][03100000380000005e5e8eef28b4aeedef477d0f87316d7d423c8f100a0b3b71] sent request.
+2019-10-07 22:17:16,626 [ERROR] [base_dht.cc][lego::dht::BaseDht::Bootstrap][213] [dht]join[122.112.234.133][8993][031000001a000000835c0cd9e9a2a683df552ae97a9f50b3940a196119d63bed][031000001a00000054c370f0693a265e7735c2adeef37dbbee9d4e121159a0b9] sent request.
+2019-10-07 22:17:16,626 [ERROR] [base_dht.cc][lego::dht::BaseDht::Bootstrap][213] [dht]join[119.3.73.78][8993][031000001a000000835c0cd9e9a2a683df552ae97a9f50b3940a196119d63bed][031000001a0000003655d6ae77eb5fdca35d270694df285fabc685759f34fc4b] sent request.
+2019-10-07 22:17:16,627 [ERROR] [base_dht.cc][lego::dht::BaseDht::Bootstrap][213] [dht]join[119.3.15.76][8993][031000001a000000835c0cd9e9a2a683df552ae97a9f50b3940a196119d63bed][031000001a00000010ce515779ca9c53fda0bec920b8a28205930847105bd9df] sent request.
