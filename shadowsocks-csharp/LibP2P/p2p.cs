@@ -29,6 +29,8 @@ namespace Shadowsocks.LipP2P {
         private static extern long getBalance();
         [DllImport("dll.dll", EntryPoint = "transactions", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr Transactions(uint begin, uint len);
+        [DllImport("dll.dll", EntryPoint = "check_version", CallingConvention = CallingConvention.Cdecl)]
+        private static extern IntPtr checkVersion();
 
         private static P2pLib uniqueInstance;
         public string prikey_;
@@ -40,7 +42,7 @@ namespace Shadowsocks.LipP2P {
         public uint vpn_ip_ = 0;
         public ushort vpn_port_ = 0;
         public string seckey_;
-        public bool use_smart_route_ = false;
+        public bool use_smart_route_ = true;
         public string str_route_ip_;
         public uint route_ip_ = 0;
         public ushort route_port_ = 0;
@@ -91,11 +93,12 @@ namespace Shadowsocks.LipP2P {
 
         public int InitNetwork() {
             string path = Utils.GetTempPath();
-            IntPtr ip = Marshal.StringToHGlobalAnsi(GetAddressIP());
+            IntPtr ip = Marshal.StringToHGlobalAnsi("0.0.0.0");
             IntPtr bootstarp = Marshal.StringToHGlobalAnsi("id:122.112.234.133:9001,id:119.3.15.76:9001,id:119.3.73.78:9001");
             IntPtr conf = Marshal.StringToHGlobalAnsi(path + "\\lego.conf");
             IntPtr log = Marshal.StringToHGlobalAnsi(path + "\\lego.log");
             IntPtr log_conf = Marshal.StringToHGlobalAnsi(path + "\\log4cpp.properties");
+
             IntPtr ptrRet = initNetwork(
                     ip,
                     18993,
@@ -104,7 +107,8 @@ namespace Shadowsocks.LipP2P {
                     log,
                     log_conf);
             string str = Marshal.PtrToStringAnsi(ptrRet);
-            if (str.Equals("ERROR")) {
+            if (str.Equals("ERROR"))
+            {
                 Logging.Error("init network failed!");
                 return 1;
             }
@@ -224,6 +228,12 @@ namespace Shadowsocks.LipP2P {
         public string Trans()
         {
             IntPtr ptrRet = Transactions(0, 64);
+            return Marshal.PtrToStringAnsi(ptrRet);
+        }
+
+        public string GetLatestVer()
+        {
+            IntPtr ptrRet = checkVersion();
             return Marshal.PtrToStringAnsi(ptrRet);
         }
     }

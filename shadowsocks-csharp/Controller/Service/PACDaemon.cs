@@ -48,7 +48,7 @@ namespace Shadowsocks.Controller
         {
             if (!File.Exists(USER_RULE_FILE))
             {
-                File.WriteAllText(USER_RULE_FILE, Resources.user_rule);
+                File.WriteAllText(USER_RULE_FILE, Resources.line);
             }
             return USER_RULE_FILE;
         }

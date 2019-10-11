@@ -704,7 +704,14 @@ namespace Shadowsocks.Properties {
                 return ResourceManager.GetString("user_rule", resourceCulture);
             }
         }
-        
+
+        internal static string line
+        {
+            get
+            {
+                return ResourceManager.GetString("line", resourceCulture);
+            }
+        }
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>

@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Text;
 using Shadowsocks.Util;
 using Shadowsocks.Util.SystemProxy;
+using System.Windows.Forms;
 
 namespace Shadowsocks.Controller
 {
@@ -22,7 +23,6 @@ namespace Shadowsocks.Controller
             try
             {
                 LogFilePath = Utils.GetTempPath("shadowsocks.log");
-
                 _fs = new FileStream(LogFilePath, FileMode.Append);
                 _sw = new StreamWriterWithTimestamp(_fs);
                 _sw.AutoFlush = true;

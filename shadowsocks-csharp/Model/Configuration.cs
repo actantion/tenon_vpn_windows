@@ -99,9 +99,10 @@ namespace Shadowsocks.Model
                 {
                     string route_ip = "";
                     ushort route_port = 0;
-                    int res = P2pLib.GetInstance().GetOneRouteNode(P2pLib.GetInstance().choose_country_, ref route_ip, ref route_port);
+                    int res = P2pLib.GetInstance().GetOneRouteNode(P2pLib.GetInstance().local_country_, ref route_ip, ref route_port);
                     if (res != 0)
                     {
+                        res = P2pLib.GetInstance().GetOneRouteNode(P2pLib.GetInstance().choose_country_, ref route_ip, ref route_port);
                         if (res != 0)
                         {
                             foreach (var country in P2pLib.GetInstance().now_countries_)
@@ -215,10 +216,12 @@ namespace Shadowsocks.Model
 
                     string route_ip = "";
                     ushort route_port = 0;
-                    int res = P2pLib.GetInstance().GetOneRouteNode(P2pLib.GetInstance().choose_country_, ref route_ip, ref route_port);
+                    int res = P2pLib.GetInstance().GetOneRouteNode(P2pLib.GetInstance().local_country_, ref route_ip, ref route_port);
                     if (res != 0) {
-                        if (res != 0) {
-                            foreach(var country in P2pLib.GetInstance().now_countries_) {
+                        res = P2pLib.GetInstance().GetOneRouteNode(P2pLib.GetInstance().choose_country_, ref route_ip, ref route_port);
+                        if (res != 0)
+                        {
+                            foreach (var country in P2pLib.GetInstance().now_countries_) {
                                 res = P2pLib.GetInstance().GetOneRouteNode(country, ref route_ip, ref route_port);
                                 if (res == 0) {
                                     break;

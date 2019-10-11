@@ -139,7 +139,7 @@ namespace LimitlessUI
 
                 brush.Dispose();
                 brush = new SolidBrush(_isHovering ? _onHoverButtonColor : _buttonColor);
-
+                                
                 //Inner part. Button itself
                 g.FillEllipse(brush, _borderThicknessByTwo, _borderThicknessByTwo, Height - _borderThickness,
                     Height - _borderThickness);
@@ -150,19 +150,21 @@ namespace LimitlessUI
 
                 brush.Dispose();
                 brush = new SolidBrush(_isHovering ? _onHoverTextColor : _textColor);
-
                 //Button Text
-                SizeF stringSize = g.MeasureString(Text, Font);
-
                 RectangleF rect = new RectangleF(Width / 2 - 45, Height / 2 - 65, 90, 90);
                 e.Graphics.InterpolationMode = InterpolationMode.HighQualityBilinear;
                 if (P2pLib.GetInstance().connectSuccess)
                 {
-                    g.DrawString("Connected", Font, brush, (Width - stringSize.Width) / 2 - 16, 55 + (Height - stringSize.Height) / 2);
+                    Text = "Connected";
+                    SizeF stringSize = g.MeasureString(Text, Font);
+                    g.DrawString(Text, Font, brush, (Width - stringSize.Width) / 2, 55 + (Height - stringSize.Height) / 2);
                     e.Graphics.DrawImage(Resources.connected, rect);
-                } else
+                }
+                else
                 {
-                    g.DrawString("Connect", Font, brush, (Width - stringSize.Width) / 2, 55 + (Height - stringSize.Height) / 2);
+                    Text = "Connect";
+                    SizeF stringSize = g.MeasureString(Text, Font);
+                    g.DrawString(Text, Font, brush, (Width - stringSize.Width) / 2, 55 + (Height - stringSize.Height) / 2);
                     e.Graphics.DrawImage(Resources.connect, rect);
                 }
             }
@@ -262,30 +264,6 @@ namespace LimitlessUI
             this.SuspendLayout();
             // 
             // flatButton_WOC1
-            // 
-            this.flatButton_WOC1.ActiveColor = System.Drawing.Color.Empty;
-            this.flatButton_WOC1.ActiveImage = null;
-            this.flatButton_WOC1.ActiveTextColor = System.Drawing.Color.Empty;
-            this.flatButton_WOC1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(53)))), ((int)(((byte)(65)))));
-            this.flatButton_WOC1.DefaultBackColor = System.Drawing.Color.Empty;
-            this.flatButton_WOC1.DefaultForeColor = System.Drawing.Color.Empty;
-            this.flatButton_WOC1.DrawImage = false;
-            this.flatButton_WOC1.DrawText = true;
-            this.flatButton_WOC1.ForeColor = System.Drawing.Color.White;
-            this.flatButton_WOC1.Image = null;
-            this.flatButton_WOC1.ImageSize = new System.Drawing.SizeF(20F, 20F);
-            this.flatButton_WOC1.IsTab = true;
-            this.flatButton_WOC1.Location = new System.Drawing.Point(0, 0);
-            this.flatButton_WOC1.Name = "flatButton_WOC1";
-            this.flatButton_WOC1.OnHoverColor = System.Drawing.Color.Empty;
-            this.flatButton_WOC1.OnHoverTextColor = System.Drawing.Color.Empty;
-            this.flatButton_WOC1.Selected = false;
-            this.flatButton_WOC1.Size = new System.Drawing.Size(220, 50);
-            this.flatButton_WOC1.TabIndex = 0;
-            this.flatButton_WOC1.Text = "flatButton_WOC1";
-            this.flatButton_WOC1.TextAligment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.flatButton_WOC1.TextOffset = new System.Drawing.Point(0, 0);
-            this.flatButton_WOC1.UseActiveImageWhileHovering = false;
             // 
             // Button_WOC
             // 

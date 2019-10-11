@@ -1,13 +1,683 @@
-[2019-10-07 22:15:34] [E] System.DllNotFoundException: 无法加载 DLL“dll.dll”: 找不到指定的模块。 (异常来自 HRESULT:0x8007007E)。
+[2019-10-09 21:49:25] [E] System.DllNotFoundException: 无法加载 DLL“dll.dll”: 找不到指定的模块。 (异常来自 HRESULT:0x8007007E)。
    在 Shadowsocks.LipP2P.P2pLib.initNetwork(IntPtr local_ip, UInt16 local_port, IntPtr bootstrap, IntPtr conf_path, IntPtr log_path, IntPtr log_conf_path)
-   在 Shadowsocks.LipP2P.P2pLib.InitNetwork() 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\LibP2P\p2p.cs:行号 99
+   在 Shadowsocks.LipP2P.P2pLib.InitNetwork() 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\LibP2P\p2p.cs:行号 102
    在 Shadowsocks.Program.Main(String[] args) 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Program.cs:行号 83
-[2019-10-07 22:16:21] [E] init network failed!
-[2019-10-07 22:16:45] [E] init network failed!
-[2019-10-07 22:17:11] System.IO.IOException: 文件“D:\lego\tenon_vpn_windows\shadowsocks-csharp\bin\x86\Release\ss_win_temp\shadowsocks.log”正由另一进程使用，因此该进程无法访问此文件。
+[2019-10-09 21:51:20] System.IO.IOException: 文件“D:\lego\tenon_vpn_windows\shadowsocks-csharp\bin\x86\Release\ss_win_temp\shadowsocks.log”正由另一进程使用，因此该进程无法访问此文件。
    在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
    在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
    在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
    在 System.IO.FileStream..ctor(String path, FileMode mode)
    在 Shadowsocks.Controller.Logging.OpenLogFile() 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Logging.cs:行号 26
-[2019-10-07 22:17:14] Shadowsocks started (1.0.1)
+[2019-10-09 21:51:23] Shadowsocks started (1.0.1)
+[2019-10-10 09:25:02] [E] init network failed!
+[2019-10-10 09:25:36] System.IO.IOException: 文件“D:\lego\tenon_vpn_windows\shadowsocks-csharp\bin\x86\Release\ss_win_temp\shadowsocks.log”正由另一进程使用，因此该进程无法访问此文件。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode)
+   在 Shadowsocks.Controller.Logging.OpenLogFile() 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Logging.cs:行号 26
+[2019-10-10 09:25:39] Shadowsocks started (1.0.1)
+[2019-10-10 09:28:02] System.IO.IOException: 文件“D:\lego\tenon_vpn_windows\shadowsocks-csharp\bin\x86\Release\ss_win_temp\shadowsocks.log”正由另一进程使用，因此该进程无法访问此文件。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode)
+   在 Shadowsocks.Controller.Logging.OpenLogFile() 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Logging.cs:行号 26
+[2019-10-10 09:28:05] Shadowsocks started (1.0.1)
+[2019-10-10 09:30:37] System.IO.IOException: 文件“D:\lego\tenon_vpn_windows\shadowsocks-csharp\bin\x86\Release\ss_win_temp\shadowsocks.log”正由另一进程使用，因此该进程无法访问此文件。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode)
+   在 Shadowsocks.Controller.Logging.OpenLogFile() 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Logging.cs:行号 26
+[2019-10-10 09:30:41] Shadowsocks started (1.0.1)
+[2019-10-10 09:31:00] Shadowsocks started (1.0.1)
+[2019-10-10 09:31:01] Shadowsocks started (1.0.1)
+[2019-10-10 09:31:03] Shadowsocks started (1.0.1)
+[2019-10-10 09:31:03] Shadowsocks started (1.0.1)
+[2019-10-10 10:22:13] System.IO.IOException: 文件“D:\lego\tenon_vpn_windows\shadowsocks-csharp\bin\x86\Release\ss_win_temp\shadowsocks.log”正由另一进程使用，因此该进程无法访问此文件。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode)
+   在 Shadowsocks.Controller.Logging.OpenLogFile() 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Logging.cs:行号 26
+[2019-10-10 10:22:17] Shadowsocks started (1.0.1)
+[2019-10-10 10:28:19] System.IO.IOException: 文件“D:\lego\tenon_vpn_windows\shadowsocks-csharp\bin\x86\Release\ss_win_temp\shadowsocks.log”正由另一进程使用，因此该进程无法访问此文件。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode)
+   在 Shadowsocks.Controller.Logging.OpenLogFile() 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Logging.cs:行号 26
+[2019-10-10 10:28:27] Shadowsocks started (1.0.1)
+[2019-10-10 11:03:06] System.IO.IOException: 文件“D:\lego\tenon_vpn_windows\shadowsocks-csharp\bin\x86\Release\ss_win_temp\shadowsocks.log”正由另一进程使用，因此该进程无法访问此文件。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode)
+   在 Shadowsocks.Controller.Logging.OpenLogFile() 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Logging.cs:行号 26
+[2019-10-10 11:03:09] Shadowsocks started (1.0.1)
+[2019-10-10 11:04:48] System.IO.IOException: 文件“D:\lego\tenon_vpn_windows\shadowsocks-csharp\bin\x86\Release\ss_win_temp\shadowsocks.log”正由另一进程使用，因此该进程无法访问此文件。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode)
+   在 Shadowsocks.Controller.Logging.OpenLogFile() 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Logging.cs:行号 26
+[2019-10-10 11:04:52] Shadowsocks started (1.0.1)
+[2019-10-10 11:07:01] System.IO.IOException: 文件“D:\lego\tenon_vpn_windows\shadowsocks-csharp\bin\x86\Release\ss_win_temp\shadowsocks.log”正由另一进程使用，因此该进程无法访问此文件。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode)
+   在 Shadowsocks.Controller.Logging.OpenLogFile() 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Logging.cs:行号 26
+[2019-10-10 11:07:04] Shadowsocks started (1.0.1)
+[2019-10-10 11:13:17] Shadowsocks started (1.0.1)
+[2019-10-10 11:13:29] Shadowsocks started (1.0.1)
+[2019-10-10 11:13:30] Shadowsocks started (1.0.1)
+[2019-10-10 11:15:33] 165.227.212.64:30368 timed out
+[2019-10-10 11:15:38] 165.227.212.64:30368 timed out
+[2019-10-10 11:15:56] 165.227.212.64:30368 timed out
+[2019-10-10 11:15:57] 165.227.212.64:30368 timed out
+[2019-10-10 11:15:57] 165.227.212.64:30368 timed out
+[2019-10-10 11:15:57] 165.227.212.64:30368 timed out
+[2019-10-10 11:15:58] 165.227.212.64:30368 timed out
+[2019-10-10 11:15:59] 165.227.212.64:30368 timed out
+[2019-10-10 11:15:59] 165.227.212.64:30368 timed out
+[2019-10-10 11:15:59] 165.227.212.64:30368 timed out
+[2019-10-10 11:16:00] 165.227.212.64:30368 timed out
+[2019-10-10 11:16:00] 165.227.212.64:30368 timed out
+[2019-10-10 11:16:00] 165.227.212.64:30368 timed out
+[2019-10-10 11:16:01] 165.227.212.64:30368 timed out
+[2019-10-10 11:16:01] 165.227.212.64:30368 timed out
+[2019-10-10 11:16:01] 165.227.212.64:30368 timed out
+[2019-10-10 11:16:01] 165.227.212.64:30368 timed out
+[2019-10-10 11:16:01] 165.227.212.64:30368 timed out
+[2019-10-10 11:16:01] 165.227.212.64:30368 timed out
+[2019-10-10 11:16:02] 165.227.212.64:30368 timed out
+[2019-10-10 11:16:02] 165.227.212.64:30368 timed out
+[2019-10-10 11:16:03] 165.227.212.64:30368 timed out
+[2019-10-10 11:16:05] 165.227.212.64:30368 timed out
+[2019-10-10 11:16:13] 165.227.212.64:30368 timed out
+[2019-10-10 11:16:29] 165.227.212.64:30368 timed out
+[2019-10-10 11:16:48] 165.227.212.64:30368 timed out
+[2019-10-10 11:16:52] 165.227.212.64:30368 timed out
+[2019-10-10 11:16:54] 165.227.212.64:30368 timed out
+[2019-10-10 11:16:55] 165.227.212.64:30368 timed out
+[2019-10-10 11:16:56] 165.227.212.64:30368 timed out
+[2019-10-10 11:17:02] 165.227.212.64:30368 timed out
+[2019-10-10 11:17:05] 165.227.212.64:30368 timed out
+[2019-10-10 11:17:08] 165.227.212.64:30368 timed out
+[2019-10-10 11:17:15] 165.227.212.64:30368 timed out
+[2019-10-10 11:17:16] 165.227.212.64:30368 timed out
+[2019-10-10 11:17:19] 165.227.212.64:30368 timed out
+[2019-10-10 11:17:23] 165.227.212.64:30368 timed out
+[2019-10-10 11:17:36] 165.227.212.64:30368 timed out
+[2019-10-10 11:17:36] 165.227.212.64:30368 timed out
+[2019-10-10 11:17:47] 165.227.212.64:30368 timed out
+[2019-10-10 11:18:00] 165.227.212.64:30368 timed out
+[2019-10-10 11:18:10] 165.227.212.64:30368 timed out
+[2019-10-10 11:29:12] System.IO.IOException: 文件“D:\lego\tenon_vpn_windows\shadowsocks-csharp\bin\x86\Release\ss_win_temp\shadowsocks.log”正由另一进程使用，因此该进程无法访问此文件。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode)
+   在 Shadowsocks.Controller.Logging.OpenLogFile() 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Logging.cs:行号 26
+[2019-10-10 11:29:17] Shadowsocks started (1.0.1)
+[2019-10-10 11:43:25] System.IO.IOException: 文件“D:\lego\tenon_vpn_windows\shadowsocks-csharp\bin\x86\Release\ss_win_temp\shadowsocks.log”正由另一进程使用，因此该进程无法访问此文件。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode)
+   在 Shadowsocks.Controller.Logging.OpenLogFile() 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Logging.cs:行号 26
+[2019-10-10 11:43:29] Shadowsocks started (1.0.1)
+[2019-10-10 12:18:02] [E] init network failed!
+[2019-10-10 12:19:32] System.IO.IOException: 文件“D:\lego\tenon_vpn_windows\shadowsocks-csharp\bin\x86\Release\ss_win_temp\shadowsocks.log”正由另一进程使用，因此该进程无法访问此文件。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode)
+   在 Shadowsocks.Controller.Logging.OpenLogFile() 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Logging.cs:行号 26
+[2019-10-10 12:19:35] Shadowsocks started (1.0.1)
+[2019-10-10 12:22:13] System.IO.IOException: 文件“D:\lego\tenon_vpn_windows\shadowsocks-csharp\bin\x86\Release\ss_win_temp\shadowsocks.log”正由另一进程使用，因此该进程无法访问此文件。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode)
+   在 Shadowsocks.Controller.Logging.OpenLogFile() 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Logging.cs:行号 26
+[2019-10-10 12:22:17] Shadowsocks started (1.0.1)
+[2019-10-10 12:22:46] Shadowsocks started (1.0.1)
+[2019-10-10 12:22:48] Shadowsocks started (1.0.1)
+[2019-10-10 12:22:49] Shadowsocks started (1.0.1)
+[2019-10-10 12:23:24] 167.71.170.154:13285 timed out
+[2019-10-10 12:23:48] Shadowsocks started (1.0.1)
+[2019-10-10 12:23:51] Shadowsocks started (1.0.1)
+[2019-10-10 12:23:52] Shadowsocks started (1.0.1)
+[2019-10-10 12:34:11] Shadowsocks started (1.0.1)
+[2019-10-10 12:34:14] Shadowsocks started (1.0.1)
+[2019-10-10 12:34:16] Shadowsocks started (1.0.1)
+[2019-10-10 12:34:39] Shadowsocks started (1.0.1)
+[2019-10-10 12:34:41] Shadowsocks started (1.0.1)
+[2019-10-10 12:34:42] Shadowsocks started (1.0.1)
+[2019-10-10 12:34:53] 165.227.212.64:30368 timed out
+[2019-10-10 12:34:53] 165.227.212.64:30368 timed out
+[2019-10-10 12:34:54] 165.227.212.64:30368 timed out
+[2019-10-10 12:34:54] 165.227.212.64:30368 timed out
+[2019-10-10 12:34:54] 165.227.212.64:30368 timed out
+[2019-10-10 12:34:54] 165.227.212.64:30368 timed out
+[2019-10-10 12:34:54] 165.227.212.64:30368 timed out
+[2019-10-10 12:34:54] 165.227.212.64:30368 timed out
+[2019-10-10 12:34:54] 165.227.212.64:30368 timed out
+[2019-10-10 12:34:56] 165.227.212.64:30368 timed out
+[2019-10-10 12:34:57] 165.227.212.64:30368 timed out
+[2019-10-10 12:34:58] 165.227.212.64:30368 timed out
+[2019-10-10 12:35:03] 165.227.212.64:30368 timed out
+[2019-10-10 12:35:03] 165.227.212.64:30368 timed out
+[2019-10-10 12:35:03] 165.227.212.64:30368 timed out
+[2019-10-10 12:35:03] 165.227.212.64:30368 timed out
+[2019-10-10 12:35:03] 165.227.212.64:30368 timed out
+[2019-10-10 12:35:03] 165.227.212.64:30368 timed out
+[2019-10-10 12:35:03] 165.227.212.64:30368 timed out
+[2019-10-10 12:35:03] 165.227.212.64:30368 timed out
+[2019-10-10 12:35:03] 165.227.212.64:30368 timed out
+[2019-10-10 12:35:03] 165.227.212.64:30368 timed out
+[2019-10-10 12:35:03] 165.227.212.64:30368 timed out
+[2019-10-10 12:35:03] 165.227.212.64:30368 timed out
+[2019-10-10 12:35:03] 165.227.212.64:30368 timed out
+[2019-10-10 12:35:03] 165.227.212.64:30368 timed out
+[2019-10-10 12:35:03] 165.227.212.64:30368 timed out
+[2019-10-10 12:35:03] 165.227.212.64:30368 timed out
+[2019-10-10 12:35:04] Shadowsocks started (1.0.1)
+[2019-10-10 12:35:05] Shadowsocks started (1.0.1)
+[2019-10-10 12:35:17] Shadowsocks started (1.0.1)
+[2019-10-10 12:35:24] Shadowsocks started (1.0.1)
+[2019-10-10 12:35:26] Shadowsocks started (1.0.1)
+[2019-10-10 12:35:50] System.IO.IOException: 文件“D:\lego\tenon_vpn_windows\shadowsocks-csharp\bin\x86\Release\ss_win_temp\shadowsocks.log”正由另一进程使用，因此该进程无法访问此文件。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode)
+   在 Shadowsocks.Controller.Logging.OpenLogFile() 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Logging.cs:行号 26
+[2019-10-10 12:35:53] Shadowsocks started (1.0.1)
+[2019-10-10 12:36:06] 165.227.212.64:30368 timed out
+[2019-10-10 12:36:06] 165.227.212.64:30368 timed out
+[2019-10-10 12:36:06] 165.227.212.64:30368 timed out
+[2019-10-10 12:36:06] 165.227.212.64:30368 timed out
+[2019-10-10 12:36:08] 165.227.212.64:30368 timed out
+[2019-10-10 12:36:08] 165.227.212.64:30368 timed out
+[2019-10-10 12:36:09] 165.227.212.64:30368 timed out
+[2019-10-10 12:36:09] 165.227.212.64:30368 timed out
+[2019-10-10 12:36:09] 165.227.212.64:30368 timed out
+[2019-10-10 12:36:09] 165.227.212.64:30368 timed out
+[2019-10-10 12:36:16] 165.227.212.64:30368 timed out
+[2019-10-10 12:36:16] 165.227.212.64:30368 timed out
+[2019-10-10 12:36:16] 165.227.212.64:30368 timed out
+[2019-10-10 12:36:16] 165.227.212.64:30368 timed out
+[2019-10-10 12:36:18] 165.227.212.64:30368 timed out
+[2019-10-10 12:36:19] 165.227.212.64:30368 timed out
+[2019-10-10 12:36:27] 165.227.212.64:30368 timed out
+[2019-10-10 12:36:27] 165.227.212.64:30368 timed out
+[2019-10-10 12:36:27] 165.227.212.64:30368 timed out
+[2019-10-10 12:36:27] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:00] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:00] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:03] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:03] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:06] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:10] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:10] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:10] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:11] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:13] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:13] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:16] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:20] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:20] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:23] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:23] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:26] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:30] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:31] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:31] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:34] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:34] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:37] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:41] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:41] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:41] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:44] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:44] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:46] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:47] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:50] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:51] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:51] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:51] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:52] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:53] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:54] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:54] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:54] 165.227.212.64:30368 timed out
+[2019-10-10 12:41:57] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:00] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:02] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:02] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:03] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:03] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:04] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:05] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:05] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:06] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:07] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:08] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:08] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:11] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:12] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:12] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:14] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:15] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:15] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:15] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:18] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:18] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:18] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:19] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:20] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:22] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:22] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:22] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:22] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:23] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:25] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:25] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:25] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:26] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:28] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:28] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:33] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:33] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:33] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:36] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:36] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:36] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:39] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:39] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:40] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:41] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:43] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:43] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:43] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:44] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:44] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:44] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:46] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:46] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:47] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:49] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:49] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:53] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:53] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:55] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:55] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:56] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:56] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:58] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:59] 165.227.212.64:30368 timed out
+[2019-10-10 12:42:59] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:01] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:02] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:04] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:04] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:04] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:05] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:06] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:06] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:07] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:07] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:09] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:10] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:10] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:14] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:14] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:16] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:16] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:16] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:17] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:17] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:17] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:17] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:20] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:20] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:20] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:20] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:21] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:21] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:22] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:23] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:23] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:23] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:23] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:23] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:24] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:24] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:25] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:25] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:26] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:28] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:31] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:32] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:38] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:38] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:39] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:42] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:43] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:43] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:43] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:45] 165.227.212.64:30368 timed out
+[2019-10-10 12:43:45] 165.227.212.64:30368 timed out
+[2019-10-10 12:48:09] System.IO.IOException: 文件“D:\lego\tenon_vpn_windows\shadowsocks-csharp\bin\x86\Release\ss_win_temp\shadowsocks.log”正由另一进程使用，因此该进程无法访问此文件。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode)
+   在 Shadowsocks.Controller.Logging.OpenLogFile() 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Logging.cs:行号 26
+[2019-10-10 12:48:12] Shadowsocks started (1.0.1)
+[2019-10-10 12:49:32] System.IO.IOException: 文件“D:\lego\tenon_vpn_windows\shadowsocks-csharp\bin\x86\Release\ss_win_temp\shadowsocks.log”正由另一进程使用，因此该进程无法访问此文件。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode)
+   在 Shadowsocks.Controller.Logging.OpenLogFile() 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Logging.cs:行号 26
+[2019-10-10 12:49:39] Shadowsocks started (1.0.1)
+[2019-10-10 12:51:01] System.IO.IOException: 文件“D:\lego\tenon_vpn_windows\shadowsocks-csharp\bin\x86\Release\ss_win_temp\shadowsocks.log”正由另一进程使用，因此该进程无法访问此文件。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode)
+   在 Shadowsocks.Controller.Logging.OpenLogFile() 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Logging.cs:行号 26
+[2019-10-10 12:51:08] Shadowsocks started (1.0.1)
+[2019-10-10 12:52:48] System.IO.IOException: 文件“D:\lego\tenon_vpn_windows\shadowsocks-csharp\bin\x86\Release\ss_win_temp\shadowsocks.log”正由另一进程使用，因此该进程无法访问此文件。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode)
+   在 Shadowsocks.Controller.Logging.OpenLogFile() 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Logging.cs:行号 26
+[2019-10-10 12:52:53] Shadowsocks started (1.0.1)
+[2019-10-10 12:53:24] System.IO.IOException: 文件“D:\lego\tenon_vpn_windows\shadowsocks-csharp\bin\x86\Release\ss_win_temp\shadowsocks.log”正由另一进程使用，因此该进程无法访问此文件。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode)
+   在 Shadowsocks.Controller.Logging.OpenLogFile() 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Logging.cs:行号 26
+[2019-10-10 12:53:28] Shadowsocks started (1.0.1)
+[2019-10-10 13:13:32] System.IO.IOException: 文件“D:\lego\tenon_vpn_windows\shadowsocks-csharp\bin\x86\Release\ss_win_temp\shadowsocks.log”正由另一进程使用，因此该进程无法访问此文件。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode)
+   在 Shadowsocks.Controller.Logging.OpenLogFile() 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Logging.cs:行号 26
+[2019-10-10 13:13:36] Shadowsocks started (1.0.1)
+[2019-10-10 13:58:25] 167.71.170.154:13285 timed out
+[2019-10-10 18:58:08] 167.71.170.154:13285 timed out
+[2019-10-10 19:07:16] 167.71.170.154:13285 timed out
+[2019-10-10 20:59:44] 167.71.170.154:13285 timed out
+[2019-10-10 21:18:32] 167.71.170.154:13285 timed out
+[2019-10-10 21:34:10] 167.71.170.154:13285 timed out
+[2019-10-10 21:34:38] 167.71.170.154:13285 timed out
+[2019-10-10 21:55:41] 167.71.170.154:13285 timed out
+[2019-10-10 22:09:08] 167.71.170.154:13285 timed out
+[2019-10-10 22:15:58] 167.71.170.154:13285 timed out
+[2019-10-10 22:28:29] 167.71.170.154:13285 timed out
+[2019-10-10 23:09:41] 167.71.170.154:13285 timed out
+[2019-10-10 23:25:44] 167.71.170.154:13285 timed out
+[2019-10-10 23:34:05] 167.71.170.154:13285 timed out
+[2019-10-10 23:49:47] 167.71.170.154:13285 timed out
+[2019-10-11 00:12:08] 167.71.170.154:13285 timed out
+[2019-10-11 02:29:56] 167.71.170.154:13285 timed out
+[2019-10-11 02:32:38] 167.71.170.154:13285 timed out
+[2019-10-11 02:38:38] 167.71.170.154:13285 timed out
+[2019-10-11 05:12:47] 167.71.170.154:13285 timed out
+[2019-10-11 05:13:01] 167.71.170.154:13285 timed out
+[2019-10-11 05:13:31] 167.71.170.154:13285 timed out
+[2019-10-11 05:13:35] 167.71.170.154:13285 timed out
+[2019-10-11 05:13:47] 167.71.170.154:13285 timed out
+[2019-10-11 05:14:01] 167.71.170.154:13285 timed out
+[2019-10-11 05:14:18] 167.71.170.154:13285 timed out
+[2019-10-11 05:14:59] 167.71.170.154:13285 timed out
+[2019-10-11 05:15:21] 167.71.170.154:13285 timed out
+[2019-10-11 05:16:12] 167.71.170.154:13285 timed out
+[2019-10-11 05:17:00] 167.71.170.154:13285 timed out
+[2019-10-11 07:41:11] 167.71.170.154:13285 timed out
+[2019-10-11 09:52:52] Shadowsocks started (1.0.1)
+[2019-10-11 09:52:55] Shadowsocks started (1.0.1)
+[2019-10-11 09:56:43] Shadowsocks started (1.0.1)
+[2019-10-11 09:56:44] Shadowsocks started (1.0.1)
+[2019-10-11 09:56:45] System.Net.Sockets.SocketException (0x80004005): 由于目标计算机积极拒绝，无法连接。
+   在 Shadowsocks.Util.Sockets.WrappedSocket.EndConnect(IAsyncResult asyncResult) 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Util\Sockets\WrappedSocket.cs:行号 140
+   在 Shadowsocks.Controller.PortForwarder.Handler.ConnectCallback(IAsyncResult ar) 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Service\PortForwarder.cs:行号 74
+[2019-10-11 09:58:08] Shadowsocks started (1.0.1)
+[2019-10-11 09:58:09] Shadowsocks started (1.0.1)
+[2019-10-11 09:58:10] System.Net.Sockets.SocketException (0x80004005): 由于目标计算机积极拒绝，无法连接。
+   在 Shadowsocks.Util.Sockets.WrappedSocket.EndConnect(IAsyncResult asyncResult) 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Util\Sockets\WrappedSocket.cs:行号 140
+   在 Shadowsocks.Controller.PortForwarder.Handler.ConnectCallback(IAsyncResult ar) 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Service\PortForwarder.cs:行号 74
+[2019-10-11 09:58:21] 178.128.26.230:11180 timed out
+[2019-10-11 09:58:24] 178.128.26.230:11180 timed out
+[2019-10-11 09:58:24] 178.128.26.230:11180 timed out
+[2019-10-11 09:58:30] 178.128.26.230:11180 timed out
+[2019-10-11 09:58:37] 178.128.26.230:11180 timed out
+[2019-10-11 09:58:40] 178.128.26.230:11180 timed out
+[2019-10-11 09:58:43] 178.128.26.230:11180 timed out
+[2019-10-11 09:59:37] 178.128.26.230:11180 timed out
+[2019-10-11 09:59:41] 178.128.26.230:11180 timed out
+[2019-10-11 09:59:43] 178.128.26.230:11180 timed out
+[2019-10-11 10:00:02] 178.128.26.230:11180 timed out
+[2019-10-11 10:00:48] 178.128.26.230:11180 timed out
+[2019-10-11 10:00:52] 178.128.26.230:11180 timed out
+[2019-10-11 10:01:18] 178.128.26.230:11180 timed out
+[2019-10-11 10:01:20] 178.128.26.230:11180 timed out
+[2019-10-11 10:01:25] 178.128.26.230:11180 timed out
+[2019-10-11 10:01:36] 178.128.26.230:11180 timed out
+[2019-10-11 10:02:01] 178.128.26.230:11180 timed out
+[2019-10-11 10:02:09] 178.128.26.230:11180 timed out
+[2019-10-11 10:02:11] 178.128.26.230:11180 timed out
+[2019-10-11 10:02:19] 178.128.26.230:11180 timed out
+[2019-10-11 10:02:44] 178.128.26.230:11180 timed out
+[2019-10-11 10:02:55] 178.128.26.230:11180 timed out
+[2019-10-11 10:03:04] 178.128.26.230:11180 timed out
+[2019-10-11 10:03:51] 178.128.26.230:11180 timed out
+[2019-10-11 10:03:56] 178.128.26.230:11180 timed out
+[2019-10-11 10:03:57] 178.128.26.230:11180 timed out
+[2019-10-11 10:04:01] 178.128.26.230:11180 timed out
+[2019-10-11 10:04:22] 178.128.26.230:11180 timed out
+[2019-10-11 10:04:22] 178.128.26.230:11180 timed out
+[2019-10-11 10:04:35] 178.128.26.230:11180 timed out
+[2019-10-11 10:04:38] 178.128.26.230:11180 timed out
+[2019-10-11 10:04:49] 178.128.26.230:11180 timed out
+[2019-10-11 10:04:56] 178.128.26.230:11180 timed out
+[2019-10-11 10:04:56] 178.128.26.230:11180 timed out
+[2019-10-11 10:05:04] 178.128.26.230:11180 timed out
+[2019-10-11 10:05:04] 178.128.26.230:11180 timed out
+[2019-10-11 10:05:04] 178.128.26.230:11180 timed out
+[2019-10-11 10:05:04] 178.128.26.230:11180 timed out
+[2019-10-11 10:05:07] 178.128.26.230:11180 timed out
+[2019-10-11 10:05:08] 178.128.26.230:11180 timed out
+[2019-10-11 10:05:23] 178.128.26.230:11180 timed out
+[2019-10-11 10:05:23] 178.128.26.230:11180 timed out
+[2019-10-11 10:05:26] 178.128.26.230:11180 timed out
+[2019-10-11 10:05:37] 178.128.26.230:11180 timed out
+[2019-10-11 10:05:58] 178.128.26.230:11180 timed out
+[2019-10-11 10:05:58] 178.128.26.230:11180 timed out
+[2019-10-11 10:05:58] 178.128.26.230:11180 timed out
+[2019-10-11 10:05:58] 178.128.26.230:11180 timed out
+[2019-10-11 10:05:59] 178.128.26.230:11180 timed out
+[2019-10-11 10:05:59] 178.128.26.230:11180 timed out
+[2019-10-11 10:05:59] 178.128.26.230:11180 timed out
+[2019-10-11 10:06:00] 178.128.26.230:11180 timed out
+[2019-10-11 10:06:02] 178.128.26.230:11180 timed out
+[2019-10-11 10:06:07] 178.128.26.230:11180 timed out
+[2019-10-11 10:06:12] 178.128.26.230:11180 timed out
+[2019-10-11 10:06:12] 178.128.26.230:11180 timed out
+[2019-10-11 10:06:12] 178.128.26.230:11180 timed out
+[2019-10-11 10:06:12] 178.128.26.230:11180 timed out
+[2019-10-11 10:06:16] 178.128.26.230:11180 timed out
+[2019-10-11 10:06:16] 178.128.26.230:11180 timed out
+[2019-10-11 10:06:25] 178.128.26.230:11180 timed out
+[2019-10-11 10:06:26] 178.128.26.230:11180 timed out
+[2019-10-11 10:06:35] 178.128.26.230:11180 timed out
+[2019-10-11 10:07:04] 178.128.26.230:11180 timed out
+[2019-10-11 10:07:04] 178.128.26.230:11180 timed out
+[2019-10-11 10:07:28] 178.128.26.230:11180 timed out
+[2019-10-11 10:08:08] 178.128.26.230:11180 timed out
+[2019-10-11 10:08:11] 178.128.26.230:11180 timed out
+[2019-10-11 10:08:51] 178.128.26.230:11180 timed out
+[2019-10-11 10:09:26] 178.128.26.230:11180 timed out
+[2019-10-11 10:09:45] 178.128.26.230:11180 timed out
+[2019-10-11 10:09:54] 178.128.26.230:11180 timed out
+[2019-10-11 10:10:31] 178.128.26.230:11180 timed out
+[2019-10-11 10:10:42] 178.128.26.230:11180 timed out
+[2019-10-11 10:10:44] 178.128.26.230:11180 timed out
+[2019-10-11 10:10:44] 178.128.26.230:11180 timed out
+[2019-10-11 10:10:44] 178.128.26.230:11180 timed out
+[2019-10-11 10:10:50] 178.128.26.230:11180 timed out
+[2019-10-11 10:11:08] 178.128.26.230:11180 timed out
+[2019-10-11 10:11:17] 178.128.26.230:11180 timed out
+[2019-10-11 10:11:17] 178.128.26.230:11180 timed out
+[2019-10-11 10:11:43] 178.128.26.230:11180 timed out
+[2019-10-11 10:11:51] 178.128.26.230:11180 timed out
+[2019-10-11 10:11:53] 178.128.26.230:11180 timed out
+[2019-10-11 10:11:54] 178.128.26.230:11180 timed out
+[2019-10-11 10:11:54] 178.128.26.230:11180 timed out
+[2019-10-11 10:12:00] 178.128.26.230:11180 timed out
+[2019-10-11 10:12:17] 178.128.26.230:11180 timed out
+[2019-10-11 10:12:22] 178.128.26.230:11180 timed out
+[2019-10-11 10:12:27] 178.128.26.230:11180 timed out
+[2019-10-11 10:12:28] 178.128.26.230:11180 timed out
+[2019-10-11 10:12:32] 178.128.26.230:11180 timed out
+[2019-10-11 10:12:36] 178.128.26.230:11180 timed out
+[2019-10-11 10:12:45] 178.128.26.230:11180 timed out
+[2019-10-11 10:12:45] 178.128.26.230:11180 timed out
+[2019-10-11 10:12:50] 178.128.26.230:11180 timed out
+[2019-10-11 10:13:00] 178.128.26.230:11180 timed out
+[2019-10-11 10:13:08] 178.128.26.230:11180 timed out
+[2019-10-11 10:13:13] 178.128.26.230:11180 timed out
+[2019-10-11 10:13:15] 178.128.26.230:11180 timed out
+[2019-10-11 10:13:17] 178.128.26.230:11180 timed out
+[2019-10-11 10:13:19] 178.128.26.230:11180 timed out
+[2019-10-11 10:13:20] 178.128.26.230:11180 timed out
+[2019-10-11 10:13:23] 178.128.26.230:11180 timed out
+[2019-10-11 10:13:33] 178.128.26.230:11180 timed out
+[2019-10-11 10:13:38] 178.128.26.230:11180 timed out
+[2019-10-11 10:13:46] 178.128.26.230:11180 timed out
+[2019-10-11 10:13:56] 178.128.26.230:11180 timed out
+[2019-10-11 10:14:02] 178.128.26.230:11180 timed out
+[2019-10-11 10:14:03] 178.128.26.230:11180 timed out
+[2019-10-11 10:14:08] 178.128.26.230:11180 timed out
+[2019-10-11 10:14:29] 178.128.26.230:11180 timed out
+[2019-10-11 10:14:39] 178.128.26.230:11180 timed out
+[2019-10-11 10:14:44] 178.128.26.230:11180 timed out
+[2019-10-11 10:14:50] 178.128.26.230:11180 timed out
+[2019-10-11 10:14:53] 178.128.26.230:11180 timed out
+[2019-10-11 10:15:00] 178.128.26.230:11180 timed out
+[2019-10-11 10:15:03] 178.128.26.230:11180 timed out
+[2019-10-11 10:15:05] 178.128.26.230:11180 timed out
+[2019-10-11 10:15:05] 178.128.26.230:11180 timed out
+[2019-10-11 10:15:15] 178.128.26.230:11180 timed out
+[2019-10-11 10:15:25] Shadowsocks started (1.0.1)
+[2019-10-11 10:15:26] Shadowsocks started (1.0.1)
+[2019-10-11 10:37:43] System.IO.IOException: 文件“D:\lego\tenon_vpn_windows\shadowsocks-csharp\bin\x86\Release\ss_win_temp\shadowsocks.log”正由另一进程使用，因此该进程无法访问此文件。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode)
+   在 Shadowsocks.Controller.Logging.OpenLogFile() 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Logging.cs:行号 26
+[2019-10-11 10:37:49] Shadowsocks started (1.0.1)
+[2019-10-11 10:39:37] Shadowsocks started (1.0.1)
+[2019-10-11 10:39:38] Shadowsocks started (1.0.1)
+[2019-10-11 10:39:39] System.Net.Sockets.SocketException (0x80004005): 由于目标计算机积极拒绝，无法连接。
+   在 Shadowsocks.Util.Sockets.WrappedSocket.EndConnect(IAsyncResult asyncResult) 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Util\Sockets\WrappedSocket.cs:行号 140
+   在 Shadowsocks.Controller.PortForwarder.Handler.ConnectCallback(IAsyncResult ar) 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Service\PortForwarder.cs:行号 74
+[2019-10-11 10:39:51] Shadowsocks started (1.0.1)
+[2019-10-11 10:39:52] System.Net.Sockets.SocketException (0x80004005): 提供了一个无效的参数。
+   在 System.Net.Sockets.Socket.Shutdown(SocketShutdown how)
+   在 Shadowsocks.Util.Sockets.WrappedSocket.Shutdown(SocketShutdown how) 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Util\Sockets\WrappedSocket.cs:行号 246
+   在 Shadowsocks.Proxy.DirectConnect.Shutdown(SocketShutdown how) 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Proxy\DirectConnect.cs:行号 91
+   在 Shadowsocks.Controller.TCPHandler.Close() 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Service\TCPRelay.cs:行号 266
+[2019-10-11 10:39:52] Shadowsocks started (1.0.1)
+[2019-10-11 10:39:54] System.Net.Sockets.SocketException (0x80004005): 由于目标计算机积极拒绝，无法连接。
+   在 Shadowsocks.Util.Sockets.WrappedSocket.EndConnect(IAsyncResult asyncResult) 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Util\Sockets\WrappedSocket.cs:行号 140
+   在 Shadowsocks.Controller.PortForwarder.Handler.ConnectCallback(IAsyncResult ar) 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Service\PortForwarder.cs:行号 74
+[2019-10-11 10:39:54] System.Net.Sockets.SocketException (0x80004005): 由于目标计算机积极拒绝，无法连接。
+   在 Shadowsocks.Util.Sockets.WrappedSocket.EndConnect(IAsyncResult asyncResult) 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Util\Sockets\WrappedSocket.cs:行号 140
+   在 Shadowsocks.Controller.PortForwarder.Handler.ConnectCallback(IAsyncResult ar) 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Service\PortForwarder.cs:行号 74
+[2019-10-11 10:44:18] System.Net.Sockets.SocketException (0x80004005): 由于目标计算机积极拒绝，无法连接。
+   在 Shadowsocks.Util.Sockets.WrappedSocket.EndConnect(IAsyncResult asyncResult) 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Util\Sockets\WrappedSocket.cs:行号 140
+   在 Shadowsocks.Controller.PortForwarder.Handler.ConnectCallback(IAsyncResult ar) 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Service\PortForwarder.cs:行号 74
+[2019-10-11 10:47:50] System.IO.IOException: 文件“D:\lego\tenon_vpn_windows\shadowsocks-csharp\bin\x86\Release\ss_win_temp\shadowsocks.log”正由另一进程使用，因此该进程无法访问此文件。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode)
+   在 Shadowsocks.Controller.Logging.OpenLogFile() 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Logging.cs:行号 26
+[2019-10-11 10:47:55] Shadowsocks started (1.0.1)
+[2019-10-11 10:47:57] Shadowsocks started (1.0.1)
+[2019-10-11 10:47:59] Shadowsocks started (1.0.1)
+[2019-10-11 10:51:35] Shadowsocks started (1.0.1)
+[2019-10-11 10:51:37] Shadowsocks started (1.0.1)
+[2019-10-11 10:55:32] Shadowsocks started (1.0.1)
+[2019-10-11 10:55:33] Shadowsocks started (1.0.1)
+[2019-10-11 10:55:34] System.Net.Sockets.SocketException (0x80004005): 由于目标计算机积极拒绝，无法连接。
+   在 Shadowsocks.Util.Sockets.WrappedSocket.EndConnect(IAsyncResult asyncResult) 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Util\Sockets\WrappedSocket.cs:行号 140
+   在 Shadowsocks.Controller.PortForwarder.Handler.ConnectCallback(IAsyncResult ar) 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Service\PortForwarder.cs:行号 74
+[2019-10-11 11:11:45] System.IO.IOException: 文件“D:\lego\tenon_vpn_windows\shadowsocks-csharp\bin\x86\Release\ss_win_temp\shadowsocks.log”正由另一进程使用，因此该进程无法访问此文件。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode)
+   在 Shadowsocks.Controller.Logging.OpenLogFile() 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Logging.cs:行号 26
+[2019-10-11 11:11:49] Shadowsocks started (1.0.1)
+[2019-10-11 11:13:01] System.IO.IOException: 文件“D:\lego\tenon_vpn_windows\shadowsocks-csharp\bin\x86\Release\ss_win_temp\shadowsocks.log”正由另一进程使用，因此该进程无法访问此文件。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode)
+   在 Shadowsocks.Controller.Logging.OpenLogFile() 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Logging.cs:行号 26
+[2019-10-11 11:13:05] Shadowsocks started (1.0.1)
+[2019-10-11 11:17:28] Shadowsocks started (1.0.1)
+[2019-10-11 11:17:30] Shadowsocks started (1.0.1)
+[2019-10-11 11:17:31] Shadowsocks started (1.0.1)
+[2019-10-11 11:17:32] Shadowsocks started (1.0.1)
+[2019-10-11 11:21:10] System.IO.IOException: 文件“D:\lego\tenon_vpn_windows\shadowsocks-csharp\bin\x86\Release\ss_win_temp\shadowsocks.log”正由另一进程使用，因此该进程无法访问此文件。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode)
+   在 Shadowsocks.Controller.Logging.OpenLogFile() 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Logging.cs:行号 26
+[2019-10-11 11:21:15] Shadowsocks started (1.0.1)
+[2019-10-11 11:21:54] System.IO.IOException: 文件“D:\lego\tenon_vpn_windows\shadowsocks-csharp\bin\x86\Release\ss_win_temp\shadowsocks.log”正由另一进程使用，因此该进程无法访问此文件。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode)
+   在 Shadowsocks.Controller.Logging.OpenLogFile() 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Logging.cs:行号 26
+[2019-10-11 11:23:47] System.IO.IOException: 文件“D:\lego\tenon_vpn_windows\shadowsocks-csharp\bin\x86\Release\ss_win_temp\shadowsocks.log”正由另一进程使用，因此该进程无法访问此文件。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode)
+   在 Shadowsocks.Controller.Logging.OpenLogFile() 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Logging.cs:行号 26
+[2019-10-11 11:23:59] Shadowsocks started (1.0.1)
+[2019-10-11 11:33:08] System.IO.IOException: 文件“D:\lego\tenon_vpn_windows\shadowsocks-csharp\bin\x86\Release\ss_win_temp\shadowsocks.log”正由另一进程使用，因此该进程无法访问此文件。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode)
+   在 Shadowsocks.Controller.Logging.OpenLogFile() 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Logging.cs:行号 26
+[2019-10-11 11:33:11] Shadowsocks started (1.0.1)
+[2019-10-11 11:40:48] System.IO.IOException: 文件“D:\lego\tenon_vpn_windows\shadowsocks-csharp\bin\x86\Release\ss_win_temp\shadowsocks.log”正由另一进程使用，因此该进程无法访问此文件。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode)
+   在 Shadowsocks.Controller.Logging.OpenLogFile() 位置 D:\lego\tenon_vpn_windows\shadowsocks-csharp\Controller\Logging.cs:行号 26
+[2019-10-11 11:40:53] Shadowsocks started (1.0.1)
+[2019-10-11 11:40:55] Shadowsocks started (1.0.1)
+[2019-10-11 11:40:57] Shadowsocks started (1.0.1)
+[2019-10-11 11:40:58] Shadowsocks started (1.0.1)

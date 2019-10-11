@@ -14,8 +14,10 @@ namespace Shadowsocks.View
 {
     public partial class ConfigForm : Form
     {
+        private const string kCurrentVersion = "1.0.4";
         private ShadowsocksController controller;
         private ProxyForm proxyForm;
+        private VersionControl upgradeForm;
 
         public ConfigForm(ShadowsocksController controller)
         {
@@ -59,7 +61,16 @@ namespace Shadowsocks.View
             };
 
             cboPlanets.DisplayImagesAndText(planets);
-            cboPlanets.SelectedIndex = 0;
+            int select_idx = 0;
+            for (int i = 0;i < P2pLib.GetInstance().now_countries_.Count; ++i)
+            {
+                if (P2pLib.GetInstance().now_countries_[i] == P2pLib.GetInstance().choose_country_)
+                {
+                    select_idx = i;
+                    break;
+                }
+            }
+            cboPlanets.SelectedIndex = select_idx;
 
             label3.Text = P2pLib.GetInstance().account_id_.Substring(0, 8).ToUpper() +
                 "..." +
@@ -148,7 +159,7 @@ namespace Shadowsocks.View
                     controller.ToggleEnable(false);
                     P2pLib.GetInstance().connectSuccess = false;
                     P2pLib.GetInstance().connectStarted = false;
-                    syncContext.Post(Connect.ThreadRefresh, null);
+                    syncContext.Post(ConnectButton.ThreadRefresh, null);
                     P2pLib.GetInstance().disConnectStarted = false;
                 });
                 tmp_thread.IsBackground = true;
@@ -162,7 +173,7 @@ namespace Shadowsocks.View
                 }
 
                 P2pLib.GetInstance().connectStarted = true;
-                P2pLib.GetInstance().use_smart_route_ = switch_WOC1.IsOn;
+                P2pLib.GetInstance().use_smart_route_ = this.switch_WOC1.IsOn;
                 int country_idx = cboPlanets.SelectedIndex;
                 Thread tmp_thread = new Thread(() =>
                 {
@@ -172,7 +183,7 @@ namespace Shadowsocks.View
                     controller.ToggleGlobal(true);
                     P2pLib.GetInstance().connectSuccess = true;
                     P2pLib.GetInstance().connectStarted = false;
-                    syncContext.Post(this.Connect.ThreadRefresh, null);
+                    syncContext.Post(this.ConnectButton.ThreadRefresh, null);
                 });
                 tmp_thread.IsBackground = true;
                 tmp_thread.Start();
@@ -181,7 +192,7 @@ namespace Shadowsocks.View
 
         private void switch_WOC1_StateChanged(object sender, EventArgs e)
         {
-            P2pLib.GetInstance().use_smart_route_ = switch_WOC1.IsOn;
+            P2pLib.GetInstance().use_smart_route_ = this.switch_WOC1.IsOn;
             if (!P2pLib.GetInstance().connectSuccess)
             {
                 return;
@@ -204,7 +215,7 @@ namespace Shadowsocks.View
                 controller.ToggleGlobal(true);
                 P2pLib.GetInstance().connectSuccess = true;
                 P2pLib.GetInstance().connectStarted = false;
-                syncContext.Post(this.Connect.ThreadRefresh, null);
+                syncContext.Post(this.ConnectButton.ThreadRefresh, null);
             });
             tmp_thread.IsBackground = true;
             tmp_thread.Start();
@@ -236,7 +247,7 @@ namespace Shadowsocks.View
 
             P2pLib.GetInstance().connectSuccess = false;
             P2pLib.GetInstance().connectStarted = true;
-            P2pLib.GetInstance().use_smart_route_ = switch_WOC1.IsOn;
+            P2pLib.GetInstance().use_smart_route_ = this.switch_WOC1.IsOn;
 
             SynchronizationContext syncContext = SynchronizationContext.Current;
             Thread tmp_thread = new Thread(() =>
@@ -247,7 +258,7 @@ namespace Shadowsocks.View
                 controller.ToggleGlobal(true);
                 P2pLib.GetInstance().connectSuccess = true;
                 P2pLib.GetInstance().connectStarted = false;
-                syncContext.Post(this.Connect.ThreadRefresh, null);
+                syncContext.Post(this.ConnectButton.ThreadRefresh, null);
             });
             tmp_thread.IsBackground = true;
             tmp_thread.Start();
@@ -274,5 +285,64 @@ namespace Shadowsocks.View
             proxyForm = null;
             Utils.ReleaseMemory(true);
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string ver = P2pLib.GetInstance().GetLatestVer();
+            if (ver.IsNullOrEmpty())
+            {
+                MessageBox.Show("Already the latest version.");
+            }
+            else
+            {
+                bool has_windows = false;
+                string[] ver_split = ver.Split(',');
+                for (int i = 0; i < ver_split.Length; ++i)
+                {
+                    string[] item = ver_split[i].Split(';');
+                    if (item.Length < 3)
+                    {
+                        continue;
+                    }
+
+                    if (item[0].Equals("windows"))
+                    {
+                        if (item[1].Equals(kCurrentVersion))
+                        {
+                            MessageBox.Show("Already the latest version.");
+                            return;
+                        }
+                        has_windows = true;
+                        break;
+                    }
+                }
+
+                if (!has_windows)
+                {
+                    MessageBox.Show("Already the latest version.");
+                    return;
+                }
+
+                if (upgradeForm != null)
+                {
+                    upgradeForm.Activate();
+                }
+                else
+                {
+                    upgradeForm = new VersionControl(ver);
+                    upgradeForm.Show();
+                    upgradeForm.Activate();
+                    upgradeForm.FormClosed += tmp_upgradeForm_FormClosed;
+                }
+            }
+        }
+
+        void tmp_upgradeForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            upgradeForm.Dispose();
+            upgradeForm = null;
+            Utils.ReleaseMemory(true);
+        }
+
     }
 }

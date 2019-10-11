@@ -23,6 +23,7 @@ namespace Shadowsocks.View
             base.Dispose(disposing);
         }
 
+
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -42,8 +43,10 @@ namespace Shadowsocks.View
             this.label6 = new System.Windows.Forms.Label();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.switch_WOC1 = new LimitlessUI.Switch_WOC();
-            this.Connect = new LimitlessUI.Button_WOC();
+            this.ConnectButton = new LimitlessUI.Button_WOC();
+            this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // panel2
@@ -162,12 +165,26 @@ namespace Shadowsocks.View
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(204)))), ((int)(((byte)(190)))));
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(19, 585);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(362, 36);
+            this.button2.TabIndex = 24;
+            this.button2.Text = "UPGRADE";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // switch_WOC1
             // 
             this.switch_WOC1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.switch_WOC1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.switch_WOC1.ForeColor = System.Drawing.Color.Black;
-            this.switch_WOC1.IsOn = false;
+            this.switch_WOC1.IsOn = true;
             this.switch_WOC1.Location = new System.Drawing.Point(330, 8);
             this.switch_WOC1.Name = "switch_WOC1";
             this.switch_WOC1.OffColor = System.Drawing.Color.Gainsboro;
@@ -179,37 +196,45 @@ namespace Shadowsocks.View
             this.switch_WOC1.TextEnabled = true;
             this.switch_WOC1.StateChanged += new System.EventHandler(this.switch_WOC1_StateChanged);
             // 
-            // Connect
+            // ConnectButton
             // 
-            this.Connect.Angle = 360;
-            this.Connect.BackLineThikness = 5F;
-            this.Connect.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(254)))), ((int)(((byte)(238)))));
-            this.Connect.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(204)))), ((int)(((byte)(190)))));
-            this.Connect.Font = new System.Drawing.Font("宋体", 18F, System.Drawing.FontStyle.Bold);
-            this.Connect.Font1 = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Connect.Font2 = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Connect.Font3 = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Connect.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Connect.IgnoreHeight = true;
-            this.Connect.Location = new System.Drawing.Point(86, 151);
-            this.Connect.Name = "Connect";
-            this.Connect.Offset = new System.Drawing.Point(0, 0);
-            this.Connect.OnHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(224)))), ((int)(((byte)(208)))));
-            this.Connect.OnHoverButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(184)))), ((int)(((byte)(170)))));
-            this.Connect.OnHoverTextColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.Connect.ProgressBackColor = System.Drawing.Color.Silver;
-            this.Connect.ProgressColor = System.Drawing.Color.Lime;
-            this.Connect.ProgressLineThikness = 9F;
-            this.Connect.Size = new System.Drawing.Size(240, 240);
-            this.Connect.Style = LimitlessUI.Button_WOC.StyleEnum.Style3;
-            this.Connect.TabIndex = 19;
-            this.Connect.Text = "Connect";
-            this.Connect.Text1Color = System.Drawing.SystemColors.ControlText;
-            this.Connect.Text2Color = System.Drawing.SystemColors.ControlText;
-            this.Connect.Text3Color = System.Drawing.SystemColors.ControlText;
-            this.Connect.TextColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.Connect.Value = 290F;
-            this.Connect.Click += new System.EventHandler(this.Connect_Click);
+            this.ConnectButton.Angle = 360;
+            this.ConnectButton.BackLineThikness = 5F;
+            this.ConnectButton.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(254)))), ((int)(((byte)(238)))));
+            this.ConnectButton.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(204)))), ((int)(((byte)(190)))));
+            this.ConnectButton.Font = new System.Drawing.Font("宋体", 18F, System.Drawing.FontStyle.Bold);
+            this.ConnectButton.Font1 = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ConnectButton.Font2 = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ConnectButton.Font3 = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ConnectButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ConnectButton.IgnoreHeight = true;
+            this.ConnectButton.Location = new System.Drawing.Point(86, 151);
+            this.ConnectButton.Name = "ConnectButton";
+            this.ConnectButton.Offset = new System.Drawing.Point(0, 0);
+            this.ConnectButton.OnHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(224)))), ((int)(((byte)(208)))));
+            this.ConnectButton.OnHoverButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(184)))), ((int)(((byte)(170)))));
+            this.ConnectButton.OnHoverTextColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.ConnectButton.ProgressBackColor = System.Drawing.Color.Silver;
+            this.ConnectButton.ProgressColor = System.Drawing.Color.Lime;
+            this.ConnectButton.ProgressLineThikness = 9F;
+            this.ConnectButton.Size = new System.Drawing.Size(240, 240);
+            this.ConnectButton.Style = LimitlessUI.Button_WOC.StyleEnum.Style3;
+            this.ConnectButton.TabIndex = 19;
+            this.ConnectButton.Text = "Connected";
+            this.ConnectButton.Text1Color = System.Drawing.SystemColors.ControlText;
+            this.ConnectButton.Text2Color = System.Drawing.SystemColors.ControlText;
+            this.ConnectButton.Text3Color = System.Drawing.SystemColors.ControlText;
+            this.ConnectButton.TextColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.ConnectButton.Value = 290F;
+            this.ConnectButton.Click += new System.EventHandler(this.Connect_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(197, 505);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(2, 63);
+            this.button3.TabIndex = 25;
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // ConfigForm
             // 
@@ -218,10 +243,12 @@ namespace Shadowsocks.View
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(406, 639);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.switch_WOC1);
-            this.Controls.Add(this.Connect);
+            this.Controls.Add(this.ConnectButton);
             this.Controls.Add(this.cboPlanets);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label5);
@@ -251,11 +278,13 @@ namespace Shadowsocks.View
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cboPlanets;
-        private LimitlessUI.Button_WOC Connect;
+        private LimitlessUI.Button_WOC ConnectButton;
         private LimitlessUI.Switch_WOC switch_WOC1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }
 

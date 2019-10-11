@@ -17,7 +17,6 @@ namespace LimitlessUI
         private int _borderThickness = 0;
         private int _borderThicknessByTwo = 0;
 
-
         public Button_SRC()
         {
             DoubleBuffered = true;

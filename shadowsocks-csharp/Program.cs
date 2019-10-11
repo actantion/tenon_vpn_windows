@@ -85,7 +85,6 @@ namespace Shadowsocks
                     MessageBox.Show(I18N.GetString("init p2p network failed, please check out your network."));
                     return;
                 }
-
 #if DEBUG
 
                 // truncate privoxy log file while debugging
