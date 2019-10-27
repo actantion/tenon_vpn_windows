@@ -19,7 +19,7 @@ namespace LimitlessUI
 
         private bool _isHovering;
         private int _borderThickness = 10;
-        private FlatButton_WOC flatButton_WOC1;
+       // private FlatButton_WOC flatButton_WOC1;
         private int _borderThicknessByTwo = 5;
 
 
@@ -105,9 +105,9 @@ namespace LimitlessUI
         {
             if (P2pLib.GetInstance().connectSuccess)
             {
-                _borderColor = Color.FromArgb(106, 254, 238);
+                _borderColor = Color.FromArgb(0, 184, 170);
                 _onHoverBorderColor = Color.FromArgb(86, 224, 208);
-                _buttonColor = Color.FromArgb(3, 204, 190);
+                _buttonColor = Color.FromArgb(3, 134, 120);
                 _onHoverButtonColor = Color.FromArgb(0, 184, 170);
                 _textColor = System.Drawing.SystemColors.ButtonHighlight;
                 _onHoverTextColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -151,20 +151,20 @@ namespace LimitlessUI
                 brush.Dispose();
                 brush = new SolidBrush(_isHovering ? _onHoverTextColor : _textColor);
                 //Button Text
-                RectangleF rect = new RectangleF(Width / 2 - 45, Height / 2 - 65, 90, 90);
+                RectangleF rect = new RectangleF(Width / 2 - 35, Height / 2 - 55, 70, 70);
                 e.Graphics.InterpolationMode = InterpolationMode.HighQualityBilinear;
                 if (P2pLib.GetInstance().connectSuccess)
                 {
                     Text = "Connected";
-                    SizeF stringSize = g.MeasureString(Text, Font);
-                    g.DrawString(Text, Font, brush, (Width - stringSize.Width) / 2, 55 + (Height - stringSize.Height) / 2);
+                    SizeF stringSize = g.MeasureString(Text, _font1);
+                    g.DrawString(Text, _font1, brush, (Width - stringSize.Width) / 2, 48 + (Height - stringSize.Height) / 2);
                     e.Graphics.DrawImage(Resources.connected, rect);
                 }
                 else
                 {
                     Text = "Connect";
-                    SizeF stringSize = g.MeasureString(Text, Font);
-                    g.DrawString(Text, Font, brush, (Width - stringSize.Width) / 2, 55 + (Height - stringSize.Height) / 2);
+                    SizeF stringSize = g.MeasureString(Text, _font1);
+                    g.DrawString(Text, _font1, brush, (Width - stringSize.Width) / 2, 48 + (Height - stringSize.Height) / 2);
                     e.Graphics.DrawImage(Resources.connect, rect);
                 }
             }
@@ -258,9 +258,10 @@ namespace LimitlessUI
             }
         }
 
+
         private void InitializeComponent()
         {
-            this.flatButton_WOC1 = new LimitlessUI.FlatButton_WOC();
+            // this.flatButton_WOC1 = new LimitlessUI.FlatButton_WOC();
             this.SuspendLayout();
             // 
             // flatButton_WOC1

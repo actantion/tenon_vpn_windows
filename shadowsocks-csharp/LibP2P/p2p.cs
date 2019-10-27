@@ -53,8 +53,14 @@ namespace Shadowsocks.LipP2P {
         public bool connectSuccess = true;
         public bool disConnectStarted = false;
 
+        private string old_vpn_ip = "";
+
         public List<string> now_countries_ = new List<string>() {
             "US", "SG", "BR","DE","FR","KR", "JP", "CA","AU","HK", "IN", "GB","CN"
+        };
+
+        public List<string> def_vpn_country = new List<string>() {
+            "US", "SG", "IN", "GB"
         };
 
         private static readonly object locker = new object();
@@ -94,7 +100,7 @@ namespace Shadowsocks.LipP2P {
         public int InitNetwork() {
             string path = Utils.GetTempPath();
             IntPtr ip = Marshal.StringToHGlobalAnsi("0.0.0.0");
-            IntPtr bootstarp = Marshal.StringToHGlobalAnsi("id:122.112.234.133:9001,id:119.3.15.76:9001,id:119.3.73.78:9001");
+            IntPtr bootstarp = Marshal.StringToHGlobalAnsi("id_1:120.77.2.117:9001,id:47.105.87.61:9001,id:110.34.181.120:9001,id:98.126.31.159:9001");
             IntPtr conf = Marshal.StringToHGlobalAnsi(path + "\\lego.conf");
             IntPtr log = Marshal.StringToHGlobalAnsi(path + "\\lego.log");
             IntPtr log_conf = Marshal.StringToHGlobalAnsi(path + "\\log4cpp.properties");
@@ -131,6 +137,65 @@ namespace Shadowsocks.LipP2P {
             Logging.Debug($"socket_id_: {socket_id_}");
             createAccount();
             return 0;
+        }
+
+        public int GetRemoteNode(ref string ip, ref ushort port) {
+            if (use_smart_route_) {
+                return GetOneRouteNode(ref ip, ref port);
+            }
+            ip = str_vpn_ip_;
+            port = vpn_port_;
+            return 0;
+        }
+
+        public int GetOneRouteNode(ref string ip, ref ushort port) {
+            int res = GetOneRouteNode(local_country_, ref ip, ref port);
+            if (res == 0) {
+                return 0;
+            }
+
+            foreach (string country in def_vpn_country) {
+                res = GetOneRouteNode(country, ref ip, ref port);
+                if (res == 0) {
+                    return 0;
+                }
+            }
+            return 1;
+        }
+
+        public int ChooseOneVpnNode() {
+            string ip = "";
+            ushort port = 0;
+            string passwd = "";
+            int res = GetOneVpnNode(choose_country_, ref ip, ref port, ref passwd);
+            if (res == 0) {
+                for (int i = 0; i < 5; ++i) {
+                    if (old_vpn_ip.Equals(ip)) {
+                        break;
+                    }
+
+                    res = GetOneVpnNode(choose_country_, ref ip, ref port, ref passwd);
+                }
+                old_vpn_ip = ip;
+                return res;
+            }
+
+            foreach (string country in def_vpn_country) {
+                res = GetOneVpnNode(country, ref ip, ref port, ref passwd);
+                if (res == 0) {
+                    for (int i = 0; i < 5; ++i) {
+                        if (old_vpn_ip.Equals(ip)) {
+                            break;
+                        }
+
+                        res = GetOneVpnNode(choose_country_, ref ip, ref port, ref passwd);
+                    }
+                    old_vpn_ip = ip;
+                    return 0;
+                }
+            }
+
+            return 1;
         }
 
         public int GetOneRouteNode(string country, ref string ip, ref ushort port) {

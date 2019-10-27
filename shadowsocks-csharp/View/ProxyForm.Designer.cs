@@ -1,4 +1,6 @@
-﻿namespace Shadowsocks.View
+﻿using Shadowsocks.Controller;
+
+namespace Shadowsocks.View
 {
     partial class ProxyForm
     {
@@ -55,7 +57,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(118, 17);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Private Key";
+            this.label1.Text = I18N.GetString("Private Key");
             // 
             // label2
             // 
@@ -66,7 +68,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(108, 17);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Account Id";
+            this.label2.Text = I18N.GetString("Account Id");
             // 
             // label3
             // 
@@ -77,7 +79,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(78, 17);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Balance";
+            this.label3.Text = I18N.GetString("Balance");
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
@@ -147,7 +149,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(128, 17);
             this.label6.TabIndex = 8;
-            this.label6.Text = "Transactions";
+            this.label6.Text = I18N.GetString("Transactions");
             this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // richTextBox2
@@ -168,25 +170,25 @@
             // 
             // datetime
             // 
-            this.datetime.HeaderText = "datetime";
+            this.datetime.HeaderText = I18N.GetString("datetime");
             this.datetime.Name = "datetime";
             this.datetime.Width = 110;
             // 
             // type
             // 
-            this.type.HeaderText = "type";
+            this.type.HeaderText = I18N.GetString("type");
             this.type.Name = "type";
             this.type.Width = 50;
             // 
             // account
             // 
-            this.account.HeaderText = "account";
+            this.account.HeaderText = I18N.GetString("account");
             this.account.Name = "account";
             this.account.Width = 120;
             // 
             // amount
             // 
-            this.amount.HeaderText = "amount";
+            this.amount.HeaderText = I18N.GetString("amount");
             this.amount.Name = "amount";
             this.amount.Width = 60;
             // 
@@ -213,7 +215,7 @@
             this.Name = "ProxyForm";
             this.Padding = new System.Windows.Forms.Padding(15, 15, 15, 11);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Account Settings";
+            this.Text = I18N.GetString("Account Settings");
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -1,4 +1,6 @@
-﻿namespace Shadowsocks.View
+﻿using Shadowsocks.Controller;
+
+namespace Shadowsocks.View
 {
     partial class VersionControl
     {
@@ -41,7 +43,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(421, 15);
             this.label1.TabIndex = 0;
-            this.label1.Text = "There is a new verison, click to upgrade page.";
+            this.label1.Text = I18N.GetString("There is a new verison, click to upgrade page.");
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // button1
@@ -53,7 +55,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(225, 36);
             this.button1.TabIndex = 1;
-            this.button1.Text = "download";
+            this.button1.Text = I18N.GetString("download");
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 

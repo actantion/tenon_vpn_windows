@@ -166,3 +166,22 @@ Error occured when process proxy setting, do you want reset current setting and 
 Unrecoverable proxy setting error occured, see log for detail=发生不可恢复的代理设置错误，查看日志以取得详情
 Auth user can not be blank=认证用户不能为空
 Auth pwd can not be blank=认证密码不能为空
+
+
+Smart Route=智能路由
+SETTINGS=账户设置
+UPGRADE=升级更新
+On=已打开
+OFF=已关闭
+Connect=点击连接
+Connected=连接成功
+Already the latest version.=已经是最新版本。
+nodes=个节点
+Intelligent routing will hide your real IP. Each session you access the network will randomly select multiple intermediate nodes for forwarding, and then go to the node of the VPN service provider. Therefore, neither the carrier nor the VPN service provider can track your data flow.=智能路由将会把你的真实IP进行隐藏，你访问网络的每次会话，都会随机选择多个中间节点进行转发，然后才到VPN服务提供商的节点，不管是运营商还是VPN服务提供商都无法跟踪你的数据流向。
+Balance=钱包余额
+Account=匿名地址
+Private Key=安全私钥
+Account Id=匿名地址
+Transactions=交易历史
+There is a new verison, click to upgrade page.=有更新版本，点击下载按钮下载。
+download=下载

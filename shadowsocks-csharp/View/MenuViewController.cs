@@ -366,6 +366,10 @@ namespace Shadowsocks.View
         private void Quit_Click(object sender, EventArgs e)
         {
             controller.Stop();
+            controller.ToggleEnable(false);
+            P2pLib.GetInstance().connectSuccess = false;
+            P2pLib.GetInstance().connectStarted = false;
+            P2pLib.GetInstance().disConnectStarted = false;
             _notifyIcon.Visible = false;
             Application.Exit();
         }

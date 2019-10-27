@@ -68,9 +68,9 @@ namespace howto_ownerdraw_image_and_text
                 e.Bounds.Width, e.Bounds.Height);
             if (e.Bounds.Height < pictureHeight)
             {
-                SolidBrush brush = new SolidBrush(Color.FromArgb(3, 226, 199));//定义画刷
+                SolidBrush brush = new SolidBrush(Color.FromArgb(3, 134, 120));//定义画刷
                 e.Graphics.FillRectangle(brush, rect_back);//填充颜色
-                Pen pen1 = new Pen(Color.FromArgb(3, 226, 199), 12);
+                Pen pen1 = new Pen(Color.FromArgb(3, 134, 120), 12);
                 e.Graphics.DrawRectangle(pen1, Rectangle.Round(rect_back));//绘制边框
             } else
             {

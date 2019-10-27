@@ -23,6 +23,9 @@ namespace Shadowsocks.Controller
         private DateTime _lastSweepTime;
         private Configuration _config;
 
+        public static volatile int connect_times_ = 0;
+        private uint old_ip = 0;
+
         public ISet<TCPHandler> Handlers { get; set; }
 
         public TCPRelay(ShadowsocksController controller, Configuration conf)
@@ -35,12 +38,23 @@ namespace Shadowsocks.Controller
 
         public override bool Handle(byte[] firstPacket, int length, Socket socket, object state)
         {
+            if (connect_times_ > 11) {
+                P2pLib.GetInstance().ChooseOneVpnNode();
+                if (old_ip != P2pLib.GetInstance().vpn_ip_) {
+                    connect_times_ = 0;
+                    old_ip = P2pLib.GetInstance().vpn_ip_;
+                }
+            }
             if (socket.ProtocolType != ProtocolType.Tcp
                 || (length < 2 || firstPacket[0] != 5))
                 return false;
             socket.SetSocketOption(SocketOptionLevel.Tcp, SocketOptionName.NoDelay, true);
             TCPHandler handler = new TCPHandler(_controller, _config, this, socket);
-
+            if (old_ip == 0)
+            {
+                old_ip = P2pLib.GetInstance().vpn_ip_;
+            }
+            ++connect_times_;
             IList<TCPHandler> handlersToClose = new List<TCPHandler>();
             lock (Handlers)
             {
@@ -215,12 +229,22 @@ namespace Shadowsocks.Controller
             if (server == null || server.server == "")
                 throw new ArgumentException("No server configured");
 
-            _encryptor = EncryptorFactory.GetEncryptor(server.method, server.password);
+            _encryptor = EncryptorFactory.GetEncryptor(P2pLib.GetInstance().enc_method_, P2pLib.GetInstance().seckey_);
+
+            string ip = "";
+            ushort port = 0;
+            int res = P2pLib.GetInstance().GetRemoteNode(ref ip, ref port);
+            if (res == 0) {
+                server.server = ip;
+                server.server_port = port;
+            }
 
             this._server = server;
-
+ 
             /* prepare address buffer length for AEAD */
-            Logging.Debug($"_addrBufLength={_addrBufLength}");
+            Logging.Debug($"_addrBufLength={_addrBufLength}, remote server: {server.server}," +
+                $" remote port: {server.server_port}, connect times: {TCPRelay.connect_times_} " +
+                $"vpn server: {P2pLib.GetInstance().str_vpn_ip_} vpn port: {P2pLib.GetInstance().vpn_port_}");
             _encryptor.AddrBufLength = _addrBufLength;
         }
 
@@ -850,6 +874,8 @@ namespace Shadowsocks.Controller
                             PipeRemoteReceiveCallback, session);
                         return;
                     }
+
+                    TCPRelay.connect_times_ = 0;
                     Logging.Debug($"start sending {bytesToSend}");
                     _connection.BeginSend(_remoteSendBuffer, 0, bytesToSend, SocketFlags.None,
                         PipeConnectionSendCallback, new object[] { session, bytesToSend });

@@ -14,7 +14,7 @@ namespace Shadowsocks.View
 {
     public partial class ConfigForm : Form
     {
-        private const string kCurrentVersion = "1.0.4";
+        private const string kCurrentVersion = "1.0.8";
         private ShadowsocksController controller;
         private ProxyForm proxyForm;
         private VersionControl upgradeForm;
@@ -101,47 +101,7 @@ namespace Shadowsocks.View
             label4.Text = balance + " Tenon";
             label5.Text = Math.Round(balance * 0.002, 3)  + "$";
         }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button_WOC1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        
         private void Connect_Click(object sender, EventArgs e)
         {
             SynchronizationContext syncContext = SynchronizationContext.Current;
@@ -222,16 +182,6 @@ namespace Shadowsocks.View
 
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void flatButton_WOC1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void cboPlanets_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (P2pLib.GetInstance().connectStarted || P2pLib.GetInstance().disConnectStarted)
@@ -291,7 +241,7 @@ namespace Shadowsocks.View
             string ver = P2pLib.GetInstance().GetLatestVer();
             if (ver.IsNullOrEmpty())
             {
-                MessageBox.Show("Already the latest version.");
+                MessageBox.Show(I18N.GetString("Already the latest version."));
             }
             else
             {
@@ -307,9 +257,9 @@ namespace Shadowsocks.View
 
                     if (item[0].Equals("windows"))
                     {
-                        if (item[1].Equals(kCurrentVersion))
+                        if (String.Compare(item[1], kCurrentVersion) <= 0)
                         {
-                            MessageBox.Show("Already the latest version.");
+                            MessageBox.Show(I18N.GetString("Already the latest version."));
                             return;
                         }
                         has_windows = true;
@@ -319,7 +269,7 @@ namespace Shadowsocks.View
 
                 if (!has_windows)
                 {
-                    MessageBox.Show("Already the latest version.");
+                    MessageBox.Show(I18N.GetString("Already the latest version."));
                     return;
                 }
 
@@ -344,5 +294,19 @@ namespace Shadowsocks.View
             Utils.ReleaseMemory(true);
         }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (proxyForm != null)
+            {
+                proxyForm.Activate();
+            }
+            else
+            {
+                proxyForm = new ProxyForm(controller);
+                proxyForm.Show();
+                proxyForm.Activate();
+                proxyForm.FormClosed += tmp_proxyForm_FormClosed;
+            }
+        }
     }
 }

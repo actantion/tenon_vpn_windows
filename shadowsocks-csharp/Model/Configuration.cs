@@ -172,6 +172,8 @@ namespace Shadowsocks.Model
                     config_loaded.configs.Add(server);
                     config_loaded.proxy.CheckConfig();
                     loaded = true;
+
+                    P2pLib.GetInstance().ChooseOneVpnNode();
                 }
                 catch (Exception e)
                 {
