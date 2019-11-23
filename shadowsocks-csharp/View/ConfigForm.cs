@@ -14,10 +14,10 @@ namespace Shadowsocks.View
 {
     public partial class ConfigForm : Form
     {
-        private const string kCurrentVersion = "1.0.8";
         private ShadowsocksController controller;
         private ProxyForm proxyForm;
         private VersionControl upgradeForm;
+        private int check_vip_times = 0;
 
         public ConfigForm(ShadowsocksController controller)
         {
@@ -72,6 +72,13 @@ namespace Shadowsocks.View
             }
             cboPlanets.SelectedIndex = select_idx;
 
+            this.button2.Text = I18N.GetString("UPGRADE");
+            this.button4.Text = I18N.GetString("SETTINGS");
+            this.label7.Text = I18N.GetString("Tenon p2p network protecting your ip and privacy.");
+            this.label6.Text = I18N.GetString("Balance");
+            this.label9.Text = I18N.GetString("");
+            this.label10.Text = I18N.GetString("waiting server...");
+
             label3.Text = P2pLib.GetInstance().account_id_.Substring(0, 8).ToUpper() +
                 "..." +
                 P2pLib.GetInstance().account_id_.Substring(P2pLib.GetInstance().account_id_.Length - 8, 8).ToUpper();
@@ -93,17 +100,93 @@ namespace Shadowsocks.View
 
         public void ResetBalance(object obj)
         {
-            long balance = P2pLib.GetInstance().Balance();
-            if (balance <= 0)
+            if (!P2pLib.GetInstance().server_status.Equals("ok"))
             {
-                return;
+                if (P2pLib.GetInstance().server_status.Equals("cni"))
+                {
+                    this.label8.Text = I18N.GetString("Agent service is not supported in your country or region.");
+                }
+
+                if (P2pLib.GetInstance().server_status.Equals("cnn"))
+                {
+                    this.label8.Text = I18N.GetString("Connect p2p vpn server failed.");
+                }
+
+                if (P2pLib.GetInstance().server_status.Equals("bwo"))
+                {
+                    this.label8.Text = I18N.GetString("free 100m used up, buy tenon or use tomorrow.");
+                }
+
+                if (P2pLib.GetInstance().server_status.Equals("oul"))
+                {
+                    this.label8.Text = I18N.GetString("Your account is logged in elsewhere.");
+                }
+                SynchronizationContext syncContext = SynchronizationContext.Current;
+                if (P2pLib.GetInstance().connectSuccess)
+                {
+                    if (!P2pLib.GetInstance().disConnectStarted)
+                    {
+                        P2pLib.GetInstance().disConnectStarted = true;
+
+                        Thread tmp_thread = new Thread(() =>
+                        {
+                            controller.Stop();
+                            controller.ToggleEnable(false);
+                            P2pLib.GetInstance().connectSuccess = false;
+                            P2pLib.GetInstance().connectStarted = false;
+                            syncContext.Post(ConnectButton.ThreadRefresh, null);
+                            P2pLib.GetInstance().disConnectStarted = false;
+                        });
+                        tmp_thread.IsBackground = true;
+                        tmp_thread.Start();
+                    }
+                }
             }
-            label4.Text = balance + " Tenon";
-            label5.Text = Math.Round(balance * 0.002, 3)  + "$";
+
+            long balance = P2pLib.GetInstance().Balance();
+            if (balance >= 0)
+            {
+                P2pLib.GetInstance().now_balance = balance;
+                label4.Text = balance + " Tenon";
+                label5.Text = Math.Round(balance * 0.002, 3) + "$";
+                this.label10.Text = balance + " Tenon";
+            }
+
+            if (check_vip_times < 10)
+            {
+                long tm = P2pLib.GetInstance().CheckVIP();
+                if (P2pLib.GetInstance().payfor_timestamp == 0 || tm != long.MaxValue)
+                {
+                    if (tm != long.MaxValue && tm != 0)
+                    {
+                        check_vip_times = 11;
+                    }
+                    P2pLib.GetInstance().payfor_timestamp = tm;
+                }
+                ++check_vip_times;
+            }
+            else
+            {
+                P2pLib.GetInstance().PayforVpn();
+            }
+
+            if (P2pLib.GetInstance().vip_left_days == -1 &&
+                    P2pLib.GetInstance().now_balance != -1 &&
+                    P2pLib.GetInstance().payfor_timestamp == long.MaxValue)
+            {
+                this.label9.Text = I18N.GetString("Free 100M/DAY.");
+            }
+
+            if (P2pLib.GetInstance().vip_left_days >= 0)
+            {
+                this.label9.Text = I18N.GetString("Due in ") + P2pLib.GetInstance().vip_left_days + I18N.GetString("days");
+            }
         }
-        
+
         private void Connect_Click(object sender, EventArgs e)
         {
+            this.label8.Text = I18N.GetString("");
+            P2pLib.GetInstance().server_status = "ok";
             SynchronizationContext syncContext = SynchronizationContext.Current;
             if (P2pLib.GetInstance().connectSuccess)
             {
@@ -257,7 +340,7 @@ namespace Shadowsocks.View
 
                     if (item[0].Equals("windows"))
                     {
-                        if (String.Compare(item[1], kCurrentVersion) <= 0)
+                        if (String.Compare(item[1], P2pLib.kCurrentVersion) <= 0)
                         {
                             MessageBox.Show(I18N.GetString("Already the latest version."));
                             return;
@@ -307,6 +390,22 @@ namespace Shadowsocks.View
                 proxyForm.Activate();
                 proxyForm.FormClosed += tmp_proxyForm_FormClosed;
             }
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            // goto brower
+            System.Diagnostics.Process.Start("http://39.105.125.37:7744/chongzhi/" + P2pLib.GetInstance().account_id_);
         }
     }
 }

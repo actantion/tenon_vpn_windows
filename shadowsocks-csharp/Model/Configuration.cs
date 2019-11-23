@@ -99,13 +99,19 @@ namespace Shadowsocks.Model
                 {
                     string route_ip = "";
                     ushort route_port = 0;
-                    int res = P2pLib.GetInstance().GetOneRouteNode(P2pLib.GetInstance().local_country_, ref route_ip, ref route_port);
+                    string def_route = P2pLib.GetInstance().local_country_;
+                    if (P2pLib.GetInstance().default_routing_map_.ContainsKey(P2pLib.GetInstance().local_country_))
+                    {
+                        def_route = P2pLib.GetInstance().default_routing_map_[P2pLib.GetInstance().local_country_];
+                    }
+
+                    int res = P2pLib.GetInstance().GetOneRouteNode(def_route, ref route_ip, ref route_port);
                     if (res != 0)
                     {
                         res = P2pLib.GetInstance().GetOneRouteNode(P2pLib.GetInstance().choose_country_, ref route_ip, ref route_port);
                         if (res != 0)
                         {
-                            foreach (var country in P2pLib.GetInstance().now_countries_)
+                            foreach (var country in P2pLib.GetInstance().def_vpn_country)
                             {
                                 res = P2pLib.GetInstance().GetOneRouteNode(country, ref route_ip, ref route_port);
                                 if (res == 0)
@@ -218,7 +224,13 @@ namespace Shadowsocks.Model
 
                     string route_ip = "";
                     ushort route_port = 0;
-                    int res = P2pLib.GetInstance().GetOneRouteNode(P2pLib.GetInstance().local_country_, ref route_ip, ref route_port);
+                    string def_route = P2pLib.GetInstance().local_country_;
+                    if (P2pLib.GetInstance().default_routing_map_.ContainsKey(P2pLib.GetInstance().local_country_))
+                    {
+                        def_route = P2pLib.GetInstance().default_routing_map_[P2pLib.GetInstance().local_country_];
+                    }
+
+                    int res = P2pLib.GetInstance().GetOneRouteNode(def_route, ref route_ip, ref route_port);
                     if (res != 0) {
                         res = P2pLib.GetInstance().GetOneRouteNode(P2pLib.GetInstance().choose_country_, ref route_ip, ref route_port);
                         if (res != 0)
@@ -292,7 +304,7 @@ namespace Shadowsocks.Model
 
         public static void Save(Configuration config)
         {
-            config.version = UpdateChecker.Version;
+            config.version = P2pLib.kCurrentVersion;
             if (config.index >= config.configs.Count)
                 config.index = config.configs.Count - 1;
             if (config.index < -1)

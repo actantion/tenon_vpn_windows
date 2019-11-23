@@ -76,7 +76,7 @@ namespace LimitlessUI
                 {
                     if (P2pLib.GetInstance().connectStarted || P2pLib.GetInstance().disConnectStarted)
                     {
-                        _progress += 10;
+                        _progress += 2;
                         if (_progress >= 360)
                         {
                             _progress = 0;
@@ -84,7 +84,7 @@ namespace LimitlessUI
 
                         _syncContext.Post(ThreadRefresh, null);
                     }
-                    Thread.Sleep(60);
+                    Thread.Sleep(10);
                 }
             });
             progressThread.IsBackground = true;
@@ -133,9 +133,9 @@ namespace LimitlessUI
                 Brush brush = new SolidBrush(_isHovering ? _onHoverBorderColor : _borderColor);
 
                 //Border
-                g.FillEllipse(brush, 0, 0, Height, Height);
-                g.FillEllipse(brush, Width - Height, 0, Height, Height);
-                g.FillRectangle(brush, Height / 2, 0, Width - Height, Height);
+                //g.FillEllipse(brush, 0, 0, Height - 2, Height - 2);
+                g.FillEllipse(brush, Width - Height + 1, 1, Height - 2, Height - 2);
+                //g.FillRectangle(brush, Height / 2, 0, Width - Height, Height);
 
                 brush.Dispose();
                 brush = new SolidBrush(_isHovering ? _onHoverButtonColor : _buttonColor);
@@ -172,7 +172,7 @@ namespace LimitlessUI
             if (P2pLib.GetInstance().connectStarted || P2pLib.GetInstance().disConnectStarted)
             {
                 var pen1 = new Pen(_color1, _line1Thinkness);
-                var pen2 = new Pen(Color.FromArgb(36, 164, 158), _line1Thinkness);
+                var pen2 = new Pen(Color.FromArgb(0, 114, 108), _line1Thinkness);
 
                 var circleRadius = _ignoreHeight
                     ? (Width - ProgressLineThikness)

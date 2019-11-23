@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
-
+using Shadowsocks.LipP2P;
 using Shadowsocks.Model;
 
 namespace Shadowsocks.Controller
@@ -80,7 +80,7 @@ namespace Shadowsocks.Controller
                 _tcpSocket.Listen(1024);
 
                 // Start an asynchronous socket to listen for connections.
-                Logging.Info($"Shadowsocks started ({UpdateChecker.Version})");
+                Logging.Info($"Shadowsocks started ({P2pLib.kCurrentVersion})");
                 if (_config.isVerboseLogging)
                 {
                     Logging.Info(Encryption.EncryptorFactory.DumpRegisteredEncryptor());

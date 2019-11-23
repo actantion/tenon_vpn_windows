@@ -179,7 +179,7 @@ namespace Shadowsocks.View
                 serverInfo = config.GetCurrentServer().FriendlyName();
             }
             // show more info by hacking the P/Invoke declaration for NOTIFYICONDATA inside Windows Forms
-            string text = I18N.GetString("TenonVPN") + " " + UpdateChecker.Version;
+            string text = I18N.GetString("TenonVPN") + " " + P2pLib.kCurrentVersion;
             if (text.Length > 127)
             {
                 text = text.Substring(0, 126 - 3) + "...";

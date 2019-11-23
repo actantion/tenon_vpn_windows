@@ -25,8 +25,7 @@ namespace Shadowsocks.View
             string trans_str = P2pLib.GetInstance().Trans();
             if (!trans_str.IsNullOrEmpty())
             {
-                string[] items = trans_str.Split(';');
-
+                string[] items = trans_str.Split(';');     
                 for (int i = 0; i < items.Length; ++i)
                 {
                     string[] item = items[i].Split(',');
@@ -56,6 +55,14 @@ namespace Shadowsocks.View
                 label4.Text = "-- Tenon";
                 label5.Text = "--$";
             }
+
+            this.label2.Text = I18N.GetString("Account");
+            this.label3.Text = I18N.GetString("Balance");
+            this.label6.Text = I18N.GetString("Transactions");
+            this.button1.Text = I18N.GetString("copy");
+            this.button3.Text = I18N.GetString("copy");
+            this.button2.Text = I18N.GetString("paste");
+
         }
 
 
@@ -92,6 +99,59 @@ namespace Shadowsocks.View
         private void label3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // prikey copy
+            Clipboard.SetDataObject(P2pLib.GetInstance().prikey_);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // prikey paste
+            IDataObject iData = Clipboard.GetDataObject();
+            if (iData.GetDataPresent(DataFormats.Text))
+            {
+                string prikey = ((String)iData.GetData(DataFormats.Text)).Trim();
+                if (prikey.Equals(P2pLib.GetInstance().prikey_))
+                {
+                    return;
+                }
+
+                if (prikey.Length != 64)
+                {
+                    MessageBox.Show(I18N.GetString("invalid private key."));
+                    return;
+                }
+
+                if (!P2pLib.GetInstance().SavePrivateKey(prikey))
+                {
+                    MessageBox.Show(I18N.GetString("Set up to 3 private keys."));
+                    return;
+                }
+
+                if (!P2pLib.GetInstance().ResetPrivateKey(prikey))
+                {
+                    MessageBox.Show(I18N.GetString("invalid private key."));
+                    return;
+                }
+
+                MessageBox.Show(I18N.GetString("after success reset private key, must restart program."));
+                Application.Exit();
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            // account copy
+            Clipboard.SetDataObject(P2pLib.GetInstance().account_id_);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            // buy
+            System.Diagnostics.Process.Start("http://39.105.125.37:7744/chongzhi/" + P2pLib.GetInstance().account_id_);
         }
     }
 }

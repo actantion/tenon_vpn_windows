@@ -4,7 +4,7 @@ using System.Net;
 using System.Text.RegularExpressions;
 
 using Newtonsoft.Json.Linq;
-
+using Shadowsocks.LipP2P;
 using Shadowsocks.Model;
 using Shadowsocks.Util;
 
@@ -23,8 +23,6 @@ namespace Shadowsocks.Controller
         public string LatestVersionURL;
         public string LatestVersionLocalName;
         public event EventHandler CheckUpdateCompleted;
-
-        public const string Version = "1.0.1";
 
         private class CheckUpdateTimer : System.Timers.Timer
         {
@@ -95,7 +93,7 @@ namespace Shadowsocks.Controller
                             if (ass != null)
                             {
                                 ass.prerelease = isPreRelease;
-                                if (ass.IsNewVersion(Version, config.checkPreRelease))
+                                if (ass.IsNewVersion(P2pLib.kCurrentVersion, config.checkPreRelease))
                                 {
                                     asserts.Add(ass);
                                 }

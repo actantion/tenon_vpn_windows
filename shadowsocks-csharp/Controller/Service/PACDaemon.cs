@@ -27,11 +27,11 @@ namespace Shadowsocks.Controller
 
         public PACDaemon()
         {
-            TouchPACFile();
-            TouchUserRuleFile();
-
-            this.WatchPacFile();
-            this.WatchUserRuleFile();
+//             TouchPACFile();
+//             TouchUserRuleFile();
+// 
+//             this.WatchPacFile();
+//             this.WatchUserRuleFile();
         }
 
 

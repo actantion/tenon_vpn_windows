@@ -39,11 +39,15 @@ namespace Shadowsocks.Controller
         public override bool Handle(byte[] firstPacket, int length, Socket socket, object state)
         {
             if (connect_times_ > 11) {
-                P2pLib.GetInstance().ChooseOneVpnNode();
-                if (old_ip != P2pLib.GetInstance().vpn_ip_) {
-                    connect_times_ = 0;
-                    old_ip = P2pLib.GetInstance().vpn_ip_;
-                }
+                connect_times_ = 0;
+                P2pLib.GetInstance().ServerStatusChange("cnn");
+                return false;
+// 
+//                 P2pLib.GetInstance().ChooseOneVpnNode();
+//                 if (old_ip != P2pLib.GetInstance().vpn_ip_) {
+//                     connect_times_ = 0;
+//                     old_ip = P2pLib.GetInstance().vpn_ip_;
+//                 }
             }
             if (socket.ProtocolType != ProtocolType.Tcp
                 || (length < 2 || firstPacket[0] != 5))
@@ -849,6 +853,16 @@ namespace Shadowsocks.Controller
                 int bytesRead = session.Remote.EndReceive(ar);
                 _totalRead += bytesRead;
                 _tcprelay.UpdateInboundCounter(_server, bytesRead);
+
+                if (bytesRead == 3) {
+                    string str = System.Text.Encoding.Default.GetString(_remoteRecvBuffer, 0, 3);
+                    if (str.Equals("bwo") || str.Equals("cni") || str.Equals("oul")) {
+                        P2pLib.GetInstance().ServerStatusChange(str);
+                        Close();
+                        return;
+                    }
+                }
+
                 if (bytesRead > 0)
                 {
                     lastActivity = DateTime.Now;

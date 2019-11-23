@@ -41,13 +41,17 @@ namespace Shadowsocks.View
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cboPlanets = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
             this.switch_WOC1 = new LimitlessUI.Switch_WOC();
             this.ConnectButton = new LimitlessUI.Button_WOC();
             this.SuspendLayout();
@@ -136,17 +140,6 @@ namespace Shadowsocks.View
             this.cboPlanets.TabIndex = 18;
             this.cboPlanets.SelectedIndexChanged += new System.EventHandler(this.cboPlanets_SelectedIndexChanged);
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold);
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(134)))), ((int)(((byte)(120)))));
-            this.label6.Location = new System.Drawing.Point(61, 350);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(94, 22);
-            this.label6.TabIndex = 22;
-            this.label6.Text = "智能路由";
-            // 
             // imageList1
             // 
             this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
@@ -182,6 +175,7 @@ namespace Shadowsocks.View
             this.button2.Text = "升级更新";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(194, 562);
@@ -195,15 +189,16 @@ namespace Shadowsocks.View
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Times New Roman", 8F, System.Drawing.FontStyle.Bold);
-            this.label7.ForeColor = System.Drawing.Color.DarkGray;
-            this.label7.Location = new System.Drawing.Point(11, 392);
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(134)))), ((int)(((byte)(120)))));
+            this.label7.Location = new System.Drawing.Point(37, 103);
             this.label7.MaximumSize = new System.Drawing.Size(300, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(293, 82);
+            this.label7.Size = new System.Drawing.Size(247, 20);
             this.label7.TabIndex = 26;
-            this.label7.Text = "        智能路由将会把你的真实IP进行隐藏，你访问网络的每次会话，都会随机选择多个中间节点进行转发，然后才到VPN服务提供商的节点，不管是运营商还是VPN" +
-    "服务提供商都无法跟踪你的数据流向。";
+            this.label7.Text = "Tenon p2p网络正在保护你的IP和隐私";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label7.UseCompatibleTextRendering = true;
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // button4
             // 
@@ -219,13 +214,76 @@ namespace Shadowsocks.View
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("黑体", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(134)))), ((int)(((byte)(120)))));
+            this.label6.Location = new System.Drawing.Point(77, 420);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(78, 17);
+            this.label6.TabIndex = 28;
+            this.label6.Text = "Balance";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label9.Location = new System.Drawing.Point(177, 458);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(119, 15);
+            this.label9.TabIndex = 30;
+            this.label9.Text = "Due in 2 days.";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label10.Location = new System.Drawing.Point(25, 458);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(119, 15);
+            this.label10.TabIndex = 32;
+            this.label10.Text = "10000000 Tenon";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.Transparent;
+            this.button5.BackgroundImage = global::Shadowsocks.Properties.Resources.buy;
+            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button5.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.button5.FlatAppearance.BorderSize = 0;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Location = new System.Drawing.Point(180, 406);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(50, 40);
+            this.button5.TabIndex = 31;
+            this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Times New Roman", 7F);
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.label8.Location = new System.Drawing.Point(64, 355);
+            this.label8.MaximumSize = new System.Drawing.Size(200, 0);
+            this.label8.MinimumSize = new System.Drawing.Size(200, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(200, 18);
+            this.label8.TabIndex = 33;
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label8.UseCompatibleTextRendering = true;
+            this.label8.Click += new System.EventHandler(this.label8_Click);
+            // 
             // switch_WOC1
             // 
             this.switch_WOC1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.switch_WOC1.Font = new System.Drawing.Font("宋体", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.switch_WOC1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(134)))), ((int)(((byte)(120)))));
             this.switch_WOC1.IsOn = true;
-            this.switch_WOC1.Location = new System.Drawing.Point(169, 348);
+            this.switch_WOC1.Location = new System.Drawing.Point(18, 18);
             this.switch_WOC1.Name = "switch_WOC1";
             this.switch_WOC1.OffColor = System.Drawing.Color.Gainsboro;
             this.switch_WOC1.OffText = "已关闭";
@@ -234,6 +292,7 @@ namespace Shadowsocks.View
             this.switch_WOC1.Size = new System.Drawing.Size(92, 24);
             this.switch_WOC1.TabIndex = 21;
             this.switch_WOC1.TextEnabled = true;
+            this.switch_WOC1.Visible = false;
             this.switch_WOC1.StateChanged += new System.EventHandler(this.switch_WOC1_StateChanged);
             // 
             // ConnectButton
@@ -243,12 +302,12 @@ namespace Shadowsocks.View
             this.ConnectButton.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(184)))), ((int)(((byte)(170)))));
             this.ConnectButton.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(134)))), ((int)(((byte)(120)))));
             this.ConnectButton.Font = new System.Drawing.Font("宋体", 18F, System.Drawing.FontStyle.Bold);
-            this.ConnectButton.Font1 = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ConnectButton.Font1 = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ConnectButton.Font2 = new System.Drawing.Font("宋体", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ConnectButton.Font3 = new System.Drawing.Font("宋体", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ConnectButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.ConnectButton.IgnoreHeight = true;
-            this.ConnectButton.Location = new System.Drawing.Point(75, 111);
+            this.ConnectButton.Location = new System.Drawing.Point(64, 136);
             this.ConnectButton.Name = "ConnectButton";
             this.ConnectButton.Offset = new System.Drawing.Point(0, 0);
             this.ConnectButton.OnHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(224)))), ((int)(((byte)(208)))));
@@ -257,7 +316,7 @@ namespace Shadowsocks.View
             this.ConnectButton.ProgressBackColor = System.Drawing.Color.Silver;
             this.ConnectButton.ProgressColor = System.Drawing.Color.Lime;
             this.ConnectButton.ProgressLineThikness = 9F;
-            this.ConnectButton.Size = new System.Drawing.Size(180, 180);
+            this.ConnectButton.Size = new System.Drawing.Size(200, 200);
             this.ConnectButton.Style = LimitlessUI.Button_WOC.StyleEnum.Style3;
             this.ConnectButton.TabIndex = 19;
             this.ConnectButton.Text = "Connected";
@@ -275,12 +334,16 @@ namespace Shadowsocks.View
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(330, 554);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.switch_WOC1);
             this.Controls.Add(this.ConnectButton);
             this.Controls.Add(this.cboPlanets);
@@ -314,13 +377,17 @@ namespace Shadowsocks.View
         private System.Windows.Forms.ComboBox cboPlanets;
         private LimitlessUI.Button_WOC ConnectButton;
         private LimitlessUI.Switch_WOC switch_WOC1;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Label label8;
     }
 }
 

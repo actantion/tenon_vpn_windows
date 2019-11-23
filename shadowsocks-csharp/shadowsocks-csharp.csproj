@@ -274,7 +274,9 @@
     <EmbeddedResource Include="ImageComboBox\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ImageComboBox\Properties\Resources.resx" />
+    <EmbeddedResource Include="ImageComboBox\Properties\Resources.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="LimitlessUI\Button_WOC.resx">
       <DependentUpon>Button_WOC.cs</DependentUpon>
     </EmbeddedResource>
@@ -313,14 +315,6 @@
     <None Include="Data\privoxy.exe.gz" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ImageComboBox\Earth.jpg" />
-    <Content Include="ImageComboBox\Jupiter.jpg" />
-    <Content Include="ImageComboBox\Mars.jpg" />
-    <Content Include="ImageComboBox\Mercury.jpg" />
-    <Content Include="ImageComboBox\Neptune.jpg" />
-    <Content Include="ImageComboBox\Saturn.jpg" />
-    <Content Include="ImageComboBox\Uranus.jpg" />
-    <Content Include="ImageComboBox\Venus.jpg" />
     <None Include="Resources\at.png" />
     <None Include="Resources\au.png" />
     <None Include="Resources\br.png" />
@@ -328,6 +322,7 @@
     <None Include="Resources\ch.png" />
     <None Include="Resources\cl.png" />
     <None Include="Resources\cn.png" />
+    <None Include="Resources\buy.png" />
     <Content Include="Resources\connect.png" />
     <Content Include="Resources\connected.png" />
     <None Include="Resources\Earth.jpg" />

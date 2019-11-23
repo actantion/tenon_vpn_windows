@@ -5,18 +5,20 @@ using Shadowsocks.Controller;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Net;
+using Microsoft.Win32;
+using System.IO;
+using System.Text;
 
 namespace Shadowsocks.LipP2P {
-
     public class P2pLib {
         [DllImport("dll.dll", EntryPoint = "init_network", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr initNetwork(
                 IntPtr local_ip,
                 UInt16 local_port,
                 IntPtr bootstrap,
-                IntPtr conf_path,
-                IntPtr log_path,
-                IntPtr log_conf_path);
+                IntPtr path,
+                IntPtr version,
+                IntPtr prikey);
         [DllImport("dll.dll", EntryPoint = "get_socket", CallingConvention = CallingConvention.Cdecl)]
         private static extern int getSocket();
         [DllImport("dll.dll", EntryPoint = "create_account", CallingConvention = CallingConvention.Cdecl)]
@@ -31,9 +33,15 @@ namespace Shadowsocks.LipP2P {
         private static extern IntPtr Transactions(uint begin, uint len);
         [DllImport("dll.dll", EntryPoint = "check_version", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr checkVersion();
+        [DllImport("dll.dll", EntryPoint = "reset_private_key", CallingConvention = CallingConvention.Cdecl)]
+        private static extern IntPtr resetPrivateKey(IntPtr prikey);
+        [DllImport("dll.dll", EntryPoint = "check_vip", CallingConvention = CallingConvention.Cdecl)]
+        private static extern IntPtr checkVip();
+        [DllImport("dll.dll", EntryPoint = "pay_for_vpn", CallingConvention = CallingConvention.Cdecl)]
+        private static extern IntPtr payForVpn(IntPtr acc, IntPtr payfor_gid, long amount);
 
         private static P2pLib uniqueInstance;
-        public string prikey_;
+        public string prikey_ = "";
         public string pubkey_;
         public string account_id_;
         public string local_country_;
@@ -48,11 +56,34 @@ namespace Shadowsocks.LipP2P {
         public ushort route_port_ = 0;
         public int socket_id_;
         public string enc_method_ = "aes-128-cfb";
+        public Dictionary<string, string> default_routing_map_ = new Dictionary<string, string>();
+        public const string kCurrentVersion = "3.0.0";
+        private string save_prikey_directory = "C://Users/Public/Documents/iedata/tvdata";
+        private HashSet<string> now_prikeys = new HashSet<string>();
+
+        public long now_balance = -1;
+        public List<string> payfor_vpn_accounts_list = new List<string>()
+        {
+            "dc161d9ab9cd5a031d6c5de29c26247b6fde6eb36ed3963c446c1a993a088262",
+            "5595b040cdd20984a3ad3805e07bad73d7bf2c31e4dc4b0a34bc781f53c3dff7",
+            "25530e0f5a561f759a8eb8c2aeba957303a8bb53a54da913ca25e6aa00d4c365",
+            "9eb2f3bd5a78a1e7275142d2eaef31e90eae47908de356781c98771ef1a90cd2",
+            "c110df93b305ce23057590229b5dd2f966620acd50ad155d213b4c9db83c1f36",
+            "f64e0d4feebb5283e79a1dfee640a276420a08ce6a8fbef5572e616e24c2cf18",
+            "7ff017f63dc70770fcfe7b336c979c7fc6164e9653f32879e55fcead90ddf13f",
+            "6dce73798afdbaac6b94b79014b15dcc6806cb693cf403098d8819ac362fa237",
+            "b5be6f0090e4f5d40458258ed9adf843324c0327145c48b55091f33673d2d5a4"
+        };
+
+        public long payfor_timestamp = 0;
+        public long vip_left_days = -1;
+        public long min_payfor_vpn_tenon = 2000;
+        private string payfor_gid = "";
+        public string server_status = "ok";
 
         public bool connectStarted = false;
         public bool connectSuccess = true;
         public bool disConnectStarted = false;
-
         private string old_vpn_ip = "";
 
         public List<string> now_countries_ = new List<string>() {
@@ -65,11 +96,112 @@ namespace Shadowsocks.LipP2P {
 
         private static readonly object locker = new object();
 
-        private P2pLib() {}
+        private P2pLib() {
+            if (!Directory.Exists(save_prikey_directory))
+            {
+                Directory.CreateDirectory(save_prikey_directory);
+            }
+
+            string prikeys = GetSavedPrikeys();
+            string[] tmp_prikeys = prikeys.Split(',');
+            for (int i = 0; i < tmp_prikeys.Length; ++i)
+            {
+                if (tmp_prikeys[i].Trim().Length == 64)
+                {
+                    if (prikey_.IsNullOrEmpty())
+                    {
+                        prikey_ = tmp_prikeys[i].Trim();
+                    }
+                    now_prikeys.Add(tmp_prikeys[i].Trim());
+                }
+            }
+        }
 
         public long Balance()
         {
             return getBalance();
+        }
+
+        public void ServerStatusChange(string svr_status)
+        {
+            server_status = svr_status;
+        }
+
+        public long currentTimeMillis()
+        {
+            long currentTicks = DateTime.Now.Ticks;
+            DateTime dtFrom = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            long currentMillis = (currentTicks - dtFrom.Ticks) / 10000;
+            return currentMillis;
+        }
+
+        public void PayforVpn()
+        {
+            long day_msec = 3600 * 1000 * 24;
+            long days_timestamp = payfor_timestamp / day_msec;
+            long cur_timestamp = currentTimeMillis();
+            long days_cur = cur_timestamp / day_msec;
+            if (payfor_timestamp != long.MaxValue && days_timestamp + 30 >= days_cur)
+            {
+                payfor_gid = "";
+                vip_left_days = (days_timestamp + 30 - days_cur) + (now_balance / min_payfor_vpn_tenon) * 30;
+                return;
+            }
+            else
+            {
+                if (payfor_gid.IsNullOrEmpty() && payfor_timestamp != 0)
+                {
+                    if (now_balance >= min_payfor_vpn_tenon)
+                    {
+                        PayforVipTrans();
+                    }
+                }
+            }
+
+            if (!payfor_gid.IsNullOrEmpty())
+            {
+                CheckVIP();
+            }
+        }
+
+        public long CheckVIP()
+        {
+            IntPtr ptr_res = checkVip();
+            string res = Marshal.PtrToStringAnsi(ptr_res);
+            payfor_timestamp = long.Parse(res);
+            return payfor_timestamp;
+        }
+
+        private void PayforVipTrans()
+        {
+            Random random = new Random();
+            int rand_num = random.Next(0, payfor_vpn_accounts_list.Count);
+            string acc = payfor_vpn_accounts_list[rand_num];
+            if (acc.IsNullOrEmpty())
+            {
+                return;
+            }
+
+            IntPtr tmp_acc = Marshal.StringToHGlobalAnsi(acc);
+            IntPtr gid = Marshal.StringToHGlobalAnsi(payfor_gid);
+            IntPtr res_gid = payForVpn(tmp_acc, gid, min_payfor_vpn_tenon);
+            payfor_gid = Marshal.PtrToStringAnsi(res_gid);
+        }
+
+        public bool ResetPrivateKey(string prikey)
+        {
+            IntPtr tmp_prikey = Marshal.StringToHGlobalAnsi(prikey);
+            IntPtr ptr_res = resetPrivateKey(tmp_prikey);
+            string res = Marshal.PtrToStringAnsi(ptr_res);
+            string[] item_split = res.Split(',');
+            if (item_split.Length != 2) {
+                return false;
+            }
+
+            prikey_ = prikey;
+            pubkey_ = item_split[0];
+            account_id_ = item_split[1];
+            return true;
         }
 
         public static P2pLib GetInstance() {
@@ -100,18 +232,18 @@ namespace Shadowsocks.LipP2P {
         public int InitNetwork() {
             string path = Utils.GetTempPath();
             IntPtr ip = Marshal.StringToHGlobalAnsi("0.0.0.0");
-            IntPtr bootstarp = Marshal.StringToHGlobalAnsi("id_1:120.77.2.117:9001,id:47.105.87.61:9001,id:110.34.181.120:9001,id:98.126.31.159:9001");
-            IntPtr conf = Marshal.StringToHGlobalAnsi(path + "\\lego.conf");
-            IntPtr log = Marshal.StringToHGlobalAnsi(path + "\\lego.log");
-            IntPtr log_conf = Marshal.StringToHGlobalAnsi(path + "\\log4cpp.properties");
+            IntPtr bootstarp = Marshal.StringToHGlobalAnsi("id:139.59.91.63:9001,id:139.59.47.229:9001,id:46.101.152.5:9001,id:165.227.18.179:9001,id:165.227.60.177:9001,id:206.189.239.148:9001");
+            IntPtr conf_path = Marshal.StringToHGlobalAnsi(path);
+            IntPtr version = Marshal.StringToHGlobalAnsi(kCurrentVersion);
+            IntPtr prikey = Marshal.StringToHGlobalAnsi(prikey_);
 
             IntPtr ptrRet = initNetwork(
                     ip,
                     18993,
                     bootstarp,
-                    conf,
-                    log,
-                    log_conf);
+                    conf_path,
+                    version,
+                    prikey);
             string str = Marshal.PtrToStringAnsi(ptrRet);
             if (str.Equals("ERROR"))
             {
@@ -120,14 +252,36 @@ namespace Shadowsocks.LipP2P {
             }
 
             string[] res_arr = str.Split(',');
-            if (res_arr.Length != 3) {
+            if (res_arr.Length < 4) {
                 Logging.Error("init network failed, res data invalid!");
                 return 1;
             }
 
             local_country_ = res_arr[0];
             account_id_ = res_arr[1];
-            prikey_ = res_arr[2];
+            if (!prikey_.Equals(res_arr[2]))
+            {
+                prikey_ = res_arr[2];
+                SavePrivateKey(prikey_);
+            }
+
+            string[] def_routes = res_arr[3].Split(';');
+            for (int i = 0; i < def_routes.Length; ++i)
+            {
+                string[] item = def_routes[i].Split(':');
+                if (item.Length != 2)
+                {
+                    continue;
+                }
+
+                if (item[0].Length != 2 && item[1].Length != 2)
+                {
+                    continue;
+                }
+
+                default_routing_map_.Add(item[0], item[1]);
+            }
+            
             socket_id_ = getSocket();
             IntPtr pubkeyRet = getPublicKey();
             pubkey_ = Marshal.PtrToStringAnsi(pubkeyRet);
@@ -149,7 +303,13 @@ namespace Shadowsocks.LipP2P {
         }
 
         public int GetOneRouteNode(ref string ip, ref ushort port) {
-            int res = GetOneRouteNode(local_country_, ref ip, ref port);
+            string def_route = local_country_;
+            if (default_routing_map_.ContainsKey(local_country_))
+            {
+                def_route = default_routing_map_[local_country_];
+            }
+
+            int res = GetOneRouteNode(def_route, ref ip, ref port);
             if (res == 0) {
                 return 0;
             }
@@ -300,6 +460,72 @@ namespace Shadowsocks.LipP2P {
         {
             IntPtr ptrRet = checkVersion();
             return Marshal.PtrToStringAnsi(ptrRet);
+        }
+
+        public bool SavePrivateKey(string prikey)
+        {
+            if (prikey.Trim().Length != 64)
+            {
+                return false;
+            }
+            
+            if (now_prikeys.Contains(prikey))
+            {
+                now_prikeys.Remove(prikey);
+            }
+
+            if (now_prikeys.Count >= 3)
+            {
+                return false;
+            }
+
+            string content = prikey;
+            foreach (string key in now_prikeys)
+            {
+                content += "," + key;
+            }
+            string file = save_prikey_directory + "/ie";
+            if (File.Exists(file))
+            {
+                FileStream stream2 = File.Open(file, FileMode.OpenOrCreate, FileAccess.Write);
+                stream2.Seek(0, SeekOrigin.Begin);
+                stream2.SetLength(0);
+                StreamWriter sw = new StreamWriter(stream2);
+                sw.Write(content);
+                sw.Flush();
+                sw.Close();
+                stream2.Close();
+            }
+            else
+            {
+                FileStream fs = new FileStream(file, FileMode.CreateNew);
+                StreamWriter sw = new StreamWriter(fs);
+                sw.Write(content);
+                sw.Flush();
+                sw.Close();
+                fs.Close();
+            }
+
+            now_prikeys.Add(prikey);
+            return true;
+        }
+
+        public string GetSavedPrikeys()
+        {
+            string file = save_prikey_directory + "/ie";
+            string res = "";
+            if (File.Exists(file))
+            {
+                StreamReader sr = new StreamReader(file, Encoding.UTF8);
+                string line;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    res += line;
+                }
+                
+                sr.Close();
+            }
+            return res;
         }
     }
 }
