@@ -23,6 +23,7 @@ namespace Shadowsocks.View
             this.controller = controller;
 
             string trans_str = P2pLib.GetInstance().Trans();
+
             if (!trans_str.IsNullOrEmpty())
             {
                 string[] items = trans_str.Split(';');     
@@ -151,7 +152,7 @@ namespace Shadowsocks.View
         private void button5_Click(object sender, EventArgs e)
         {
             // buy
-            System.Diagnostics.Process.Start("http://39.105.125.37:7744/chongzhi/" + P2pLib.GetInstance().account_id_);
+            System.Diagnostics.Process.Start("http://" + P2pLib.GetInstance().buy_tenon_ip_  + "/chongzhi/" + P2pLib.GetInstance().account_id_);
         }
     }
 }

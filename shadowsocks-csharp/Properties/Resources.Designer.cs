@@ -403,6 +403,39 @@ namespace Shadowsocks.Properties {
             }
         }
 
+        internal static System.Drawing.Bitmap join_us
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("join_us", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap vip
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("vip", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap no_vip
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("no_vip", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap share {
+            get {
+                object obj = ResourceManager.GetObject("share", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>

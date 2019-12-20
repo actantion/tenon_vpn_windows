@@ -17,7 +17,10 @@ namespace Shadowsocks.View
         private ShadowsocksController controller;
         private ProxyForm proxyForm;
         private VersionControl upgradeForm;
+        private OutBandwidth outbandForm;
+
         private int check_vip_times = 0;
+        private bool upgrade_is_shown = false;
 
         public ConfigForm(ShadowsocksController controller)
         {
@@ -78,12 +81,7 @@ namespace Shadowsocks.View
             this.label6.Text = I18N.GetString("Balance");
             this.label9.Text = I18N.GetString("");
             this.label10.Text = I18N.GetString("waiting server...");
-
-            label3.Text = P2pLib.GetInstance().account_id_.Substring(0, 8).ToUpper() +
-                "..." +
-                P2pLib.GetInstance().account_id_.Substring(P2pLib.GetInstance().account_id_.Length - 8, 8).ToUpper();
-            label4.Text = "-- Tenon";
-            label5.Text = "--$";
+            this.label12.Text = I18N.GetString("Share to friends and earn the tenon coin.");
 
             _syncContext = SynchronizationContext.Current;
             progressThread = new Thread(() =>
@@ -100,6 +98,7 @@ namespace Shadowsocks.View
 
         public void ResetBalance(object obj)
         {
+            checkServerInfo(false);
             if (!P2pLib.GetInstance().server_status.Equals("ok"))
             {
                 if (P2pLib.GetInstance().server_status.Equals("cni"))
@@ -110,11 +109,6 @@ namespace Shadowsocks.View
                 if (P2pLib.GetInstance().server_status.Equals("cnn"))
                 {
                     this.label8.Text = I18N.GetString("Connect p2p vpn server failed.");
-                }
-
-                if (P2pLib.GetInstance().server_status.Equals("bwo"))
-                {
-                    this.label8.Text = I18N.GetString("free 100m used up, buy tenon or use tomorrow.");
                 }
 
                 if (P2pLib.GetInstance().server_status.Equals("oul"))
@@ -147,9 +141,12 @@ namespace Shadowsocks.View
             if (balance >= 0)
             {
                 P2pLib.GetInstance().now_balance = balance;
-                label4.Text = balance + " Tenon";
-                label5.Text = Math.Round(balance * 0.002, 3) + "$";
                 this.label10.Text = balance + " Tenon";
+            }
+
+            if (P2pLib.GetInstance().now_balance < 0)
+            {
+                P2pLib.createAccount();
             }
 
             if (check_vip_times < 10)
@@ -171,14 +168,17 @@ namespace Shadowsocks.View
             }
 
             if (P2pLib.GetInstance().vip_left_days == -1 &&
-                    P2pLib.GetInstance().now_balance != -1 &&
-                    P2pLib.GetInstance().payfor_timestamp == long.MaxValue)
+                    P2pLib.GetInstance().now_balance != -1)
             {
-                this.label9.Text = I18N.GetString("Free 100M/DAY.");
+                this.label9.Text = "";
+                pictureBox2.Visible = false;
+                button5.Visible = true;
             }
 
             if (P2pLib.GetInstance().vip_left_days >= 0)
             {
+                pictureBox2.Visible = true;
+                button5.Visible = false;
                 this.label9.Text = I18N.GetString("Due in ") + P2pLib.GetInstance().vip_left_days + I18N.GetString("days");
             }
         }
@@ -186,7 +186,12 @@ namespace Shadowsocks.View
         private void Connect_Click(object sender, EventArgs e)
         {
             this.label8.Text = I18N.GetString("");
-            P2pLib.GetInstance().server_status = "ok";
+            if (P2pLib.GetInstance().server_status.Equals("bwo"))
+            {
+                showOutbandDialog();
+                P2pLib.GetInstance().server_status = "ok";
+                return;
+            }
             SynchronizationContext syncContext = SynchronizationContext.Current;
             if (P2pLib.GetInstance().connectSuccess)
             {
@@ -319,55 +324,114 @@ namespace Shadowsocks.View
             Utils.ReleaseMemory(true);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void checkServerInfo(bool show_message)
         {
             string ver = P2pLib.GetInstance().GetLatestVer();
             if (ver.IsNullOrEmpty())
             {
-                MessageBox.Show(I18N.GetString("Already the latest version."));
-            }
-            else
-            {
-                bool has_windows = false;
-                string[] ver_split = ver.Split(',');
-                for (int i = 0; i < ver_split.Length; ++i)
+                if (show_message)
                 {
-                    string[] item = ver_split[i].Split(';');
-                    if (item.Length < 3)
-                    {
-                        continue;
-                    }
+                    MessageBox.Show(I18N.GetString("Already the latest version."));
+                }
 
-                    if (item[0].Equals("windows"))
+                return;
+            }
+           
+            bool has_windows = false;
+            string[] ver_split = ver.Split(',');
+            for (int i = 0; i < ver_split.Length; ++i)
+            {
+                string[] item = ver_split[i].Split(';');
+                if (item.Length < 3)
+                {
+                    continue;
+                }
+
+                if (item[0].Equals("windows"))
+                {
+                    if (String.Compare(item[1], P2pLib.kCurrentVersion) <= 0)
                     {
-                        if (String.Compare(item[1], P2pLib.kCurrentVersion) <= 0)
+                        if (show_message)
                         {
                             MessageBox.Show(I18N.GetString("Already the latest version."));
                             return;
                         }
+                    }
+                    else
+                    {
                         has_windows = true;
-                        break;
                     }
                 }
 
-                if (!has_windows)
+                if (item[0].Equals("share_ip"))
                 {
-                    MessageBox.Show(I18N.GetString("Already the latest version."));
-                    return;
+                    if (!item[1].IsNullOrEmpty())
+                    {
+                        P2pLib.GetInstance().share_ip_ = item[1];
+                    }
                 }
 
-                if (upgradeForm != null)
+                if (item[0].Equals("buy_ip"))
                 {
-                    upgradeForm.Activate();
-                }
-                else
-                {
-                    upgradeForm = new VersionControl(ver);
-                    upgradeForm.Show();
-                    upgradeForm.Activate();
-                    upgradeForm.FormClosed += tmp_upgradeForm_FormClosed;
+                    if (!item[1].IsNullOrEmpty())
+                    {
+                        P2pLib.GetInstance().buy_tenon_ip_ = item[1];
+                    }
                 }
             }
+
+            if (!has_windows)
+            {
+                if (show_message) {
+                    MessageBox.Show(I18N.GetString("Already the latest version."));
+                }
+                return;
+            }
+
+            if (upgrade_is_shown)
+            {
+                return;
+            }
+
+            upgrade_is_shown = true;
+            if (upgradeForm != null)
+            {
+                upgradeForm.Activate();
+            }
+            else
+            {
+                upgradeForm = new VersionControl(ver);
+                upgradeForm.Show();
+                upgradeForm.Activate();
+                upgradeForm.FormClosed += tmp_upgradeForm_FormClosed;
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            checkServerInfo(true);
+        }
+
+        void showOutbandDialog()
+        {
+            if (outbandForm != null)
+            {
+                outbandForm.Activate();
+            }
+            else
+            {
+                outbandForm = new OutBandwidth();
+                outbandForm.Show();
+                outbandForm.Activate();
+                outbandForm.FormClosed += hideOutbandDialog;
+            }
+        }
+
+        void hideOutbandDialog(object sender, FormClosedEventArgs e)
+        {
+            outbandForm.Dispose();
+            outbandForm = null;
+            Utils.ReleaseMemory(true);
         }
 
         void tmp_upgradeForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -375,6 +439,7 @@ namespace Shadowsocks.View
             upgradeForm.Dispose();
             upgradeForm = null;
             Utils.ReleaseMemory(true);
+            upgrade_is_shown = false;
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -405,7 +470,46 @@ namespace Shadowsocks.View
         private void button5_Click(object sender, EventArgs e)
         {
             // goto brower
-            System.Diagnostics.Process.Start("http://39.105.125.37:7744/chongzhi/" + P2pLib.GetInstance().account_id_);
+            System.Diagnostics.Process.Start("http://" + P2pLib.GetInstance().buy_tenon_ip_ + "/chongzhi/" + P2pLib.GetInstance().account_id_);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            // share
+            Clipboard.SetDataObject(I18N.GetString("Decentralized VPN, safe, reliable and high speed.") + "\n http://" + P2pLib.GetInstance().share_ip_ + "?id=" + P2pLib.GetInstance().account_id_);
+            MessageBox.Show(I18N.GetString("Copy sharing link succeeded."));
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+            // share
+            Clipboard.SetDataObject(I18N.GetString("Decentralized VPN, safe, reliable and high speed.") + "\n http://" + P2pLib.GetInstance().share_ip_ + "?id=" + P2pLib.GetInstance().account_id_);
+            MessageBox.Show(I18N.GetString("Copy sharing link succeeded."));
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/tenondvpn/tenonvpn-join");
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://" + P2pLib.GetInstance().buy_tenon_ip_ + "/chongzhi/" + P2pLib.GetInstance().account_id_);
+        }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://" + P2pLib.GetInstance().buy_tenon_ip_ + "/chongzhi/" + P2pLib.GetInstance().account_id_);
         }
     }
 }

@@ -236,6 +236,12 @@
     <Compile Include="View\ProxyForm.Designer.cs">
       <DependentUpon>ProxyForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\OutBandwidth.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\OutBandwidth.Designer.cs">
+      <DependentUpon>OutBandwidth.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\VersionControl.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -301,6 +307,9 @@
     <EmbeddedResource Include="View\ProxyForm.resx">
       <DependentUpon>ProxyForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\OutBandwidth.resx">
+      <DependentUpon>OutBandwidth.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\VersionControl.resx">
       <DependentUpon>VersionControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -354,6 +363,10 @@
     <None Include="Resources\set.png" />
     <None Include="Resources\user_set.png" />
     <None Include="Resources\line.png" />
+    <None Include="Resources\share.png" />
+    <None Include="Resources\join_us.png" />
+    <None Include="Resources\vip.png" />
+    <None Include="Resources\no_vip.png" />
     <Content Include="tenon-vpn.ico" />
     <Content Include="WinFormAnimation\Icon.png" />
     <Content Include="WinFormAnimation\readme.txt" />

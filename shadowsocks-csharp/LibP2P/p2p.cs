@@ -22,7 +22,7 @@ namespace Shadowsocks.LipP2P {
         [DllImport("dll.dll", EntryPoint = "get_socket", CallingConvention = CallingConvention.Cdecl)]
         private static extern int getSocket();
         [DllImport("dll.dll", EntryPoint = "create_account", CallingConvention = CallingConvention.Cdecl)]
-        private static extern void createAccount();
+        public static extern void createAccount();
         [DllImport("dll.dll", EntryPoint = "get_vpn_nodes", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr getNetworkNodes(IntPtr country, uint count, bool route);
         [DllImport("dll.dll", EntryPoint = "get_public_key", CallingConvention = CallingConvention.Cdecl)]
@@ -47,6 +47,7 @@ namespace Shadowsocks.LipP2P {
         public string local_country_;
         public string choose_country_ = "US";
         public string str_vpn_ip_;
+
         public uint vpn_ip_ = 0;
         public ushort vpn_port_ = 0;
         public string seckey_;
@@ -54,12 +55,18 @@ namespace Shadowsocks.LipP2P {
         public string str_route_ip_;
         public uint route_ip_ = 0;
         public ushort route_port_ = 0;
+        public string ex_str_route_ip_;
+        public uint ex_route_ip_ = 0;
+        public ushort ex_route_port_ = 0;
+
         public int socket_id_;
         public string enc_method_ = "aes-128-cfb";
         public Dictionary<string, string> default_routing_map_ = new Dictionary<string, string>();
-        public const string kCurrentVersion = "3.0.0";
+        public const string kCurrentVersion = "3.1.0";
         private string save_prikey_directory = "C://Users/Public/Documents/iedata/tvdata";
         private HashSet<string> now_prikeys = new HashSet<string>();
+        public string share_ip_ = "103.205.5.217";
+        public string buy_tenon_ip_ = "222.186.170.72";
 
         public long now_balance = -1;
         public List<string> payfor_vpn_accounts_list = new List<string>()
@@ -76,8 +83,10 @@ namespace Shadowsocks.LipP2P {
         };
 
         public long payfor_timestamp = 0;
+        public long payfor_amount = 0;
         public long vip_left_days = -1;
-        public long min_payfor_vpn_tenon = 2000;
+        public long min_payfor_vpn_tenon = 66;
+        public long max_payfor_vpn_tenon = 2000;
         private string payfor_gid = "";
         public string server_status = "ok";
 
@@ -91,7 +100,7 @@ namespace Shadowsocks.LipP2P {
         };
 
         public List<string> def_vpn_country = new List<string>() {
-            "US", "SG", "IN", "GB"
+            "US", "FR", "IN", "AU", "DE"
         };
 
         private static readonly object locker = new object();
@@ -141,10 +150,11 @@ namespace Shadowsocks.LipP2P {
             long days_timestamp = payfor_timestamp / day_msec;
             long cur_timestamp = currentTimeMillis();
             long days_cur = cur_timestamp / day_msec;
-            if (payfor_timestamp != long.MaxValue && days_timestamp + 30 >= days_cur)
+            long vip_days = payfor_amount / min_payfor_vpn_tenon;
+            if (payfor_timestamp != long.MaxValue && days_timestamp + vip_days > days_cur)
             {
                 payfor_gid = "";
-                vip_left_days = (days_timestamp + 30 - days_cur) + (now_balance / min_payfor_vpn_tenon) * 30;
+                vip_left_days = (days_timestamp + vip_days - days_cur) + (now_balance / min_payfor_vpn_tenon);
                 return;
             }
             else
@@ -168,7 +178,13 @@ namespace Shadowsocks.LipP2P {
         {
             IntPtr ptr_res = checkVip();
             string res = Marshal.PtrToStringAnsi(ptr_res);
-            payfor_timestamp = long.Parse(res);
+            string[] items = res.Split(',');
+            if (items.Length != 2)
+            {
+                return long.MaxValue;
+            }
+            payfor_timestamp = long.Parse(items[0]);
+            payfor_amount = long.Parse(items[1]);
             return payfor_timestamp;
         }
 
@@ -182,9 +198,20 @@ namespace Shadowsocks.LipP2P {
                 return;
             }
 
+            long days = now_balance / min_payfor_vpn_tenon;
+            if (days > 30)
+            {
+                days = 30;
+            }
+
+            long amount = days * min_payfor_vpn_tenon;
+            if (amount <= 0 || amount > now_balance)
+            {
+                return;
+            }
             IntPtr tmp_acc = Marshal.StringToHGlobalAnsi(acc);
             IntPtr gid = Marshal.StringToHGlobalAnsi(payfor_gid);
-            IntPtr res_gid = payForVpn(tmp_acc, gid, min_payfor_vpn_tenon);
+            IntPtr res_gid = payForVpn(tmp_acc, gid, amount);
             payfor_gid = Marshal.PtrToStringAnsi(res_gid);
         }
 
@@ -232,7 +259,7 @@ namespace Shadowsocks.LipP2P {
         public int InitNetwork() {
             string path = Utils.GetTempPath();
             IntPtr ip = Marshal.StringToHGlobalAnsi("0.0.0.0");
-            IntPtr bootstarp = Marshal.StringToHGlobalAnsi("id:139.59.91.63:9001,id:139.59.47.229:9001,id:46.101.152.5:9001,id:165.227.18.179:9001,id:165.227.60.177:9001,id:206.189.239.148:9001");
+            IntPtr bootstarp = Marshal.StringToHGlobalAnsi("id:139.59.91.63:9001,id:139.59.47.229:9001,id:46.101.152.5:9001,id:165.227.18.179:9001,id:165.227.60.177:9001,id:206.189.239.148:9001,id:121.201.1.186:9001,id:121.201.10.101:9001,id:121.201.102.126:9001");
             IntPtr conf_path = Marshal.StringToHGlobalAnsi(path);
             IntPtr version = Marshal.StringToHGlobalAnsi(kCurrentVersion);
             IntPtr prikey = Marshal.StringToHGlobalAnsi(prikey_);
@@ -295,11 +322,31 @@ namespace Shadowsocks.LipP2P {
 
         public int GetRemoteNode(ref string ip, ref ushort port) {
             if (use_smart_route_) {
-                return GetOneRouteNode(ref ip, ref port);
+                int res = GetOneRouteNode(ref ip, ref port);
+                return res;
             }
             ip = str_vpn_ip_;
             port = vpn_port_;
             return 0;
+        }
+
+        public int GetExRouteNode(ref string ip, ref ushort port) {
+            if (local_country_.Equals("CN") &&
+                    (choose_country_.Equals("JP") || choose_country_.Equals("SG"))) {
+                int res = GetOneRouteNode("US", ref ip, ref port);
+                if (res == 0) {
+                    return 0;
+                }
+
+                foreach (string country in def_vpn_country) {
+                    res = GetOneRouteNode(country, ref ip, ref port);
+                    if (res == 0) {
+                        return 0;
+                    }
+                }
+                return 1;
+            }
+            return 1;
         }
 
         public int GetOneRouteNode(ref string ip, ref ushort port) {

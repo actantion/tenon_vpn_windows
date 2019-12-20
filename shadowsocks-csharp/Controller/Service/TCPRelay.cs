@@ -39,15 +39,18 @@ namespace Shadowsocks.Controller
         public override bool Handle(byte[] firstPacket, int length, Socket socket, object state)
         {
             if (connect_times_ > 11) {
-                connect_times_ = 0;
-                P2pLib.GetInstance().ServerStatusChange("cnn");
-                return false;
-// 
-//                 P2pLib.GetInstance().ChooseOneVpnNode();
-//                 if (old_ip != P2pLib.GetInstance().vpn_ip_) {
-//                     connect_times_ = 0;
-//                     old_ip = P2pLib.GetInstance().vpn_ip_;
-//                 }
+                P2pLib.GetInstance().ChooseOneVpnNode();
+                if (old_ip != P2pLib.GetInstance().vpn_ip_) {
+                    connect_times_ = 0;
+                    old_ip = P2pLib.GetInstance().vpn_ip_;
+                }
+
+                if (connect_times_ > 20)
+                {
+                    connect_times_ = 0;
+                    P2pLib.GetInstance().ServerStatusChange("cnn");
+                    return false;
+                }
             }
             if (socket.ProtocolType != ProtocolType.Tcp
                 || (length < 2 || firstPacket[0] != 5))
@@ -978,6 +981,18 @@ namespace Shadowsocks.Controller
                 List<byte> header_bytes = new List<byte>();
                 int append_size = 0;
                 if (P2pLib.GetInstance().use_smart_route_) {
+                    string ex_route_ip = "";
+                    ushort ex_route_port = 0;
+                    if (P2pLib.GetInstance().GetExRouteNode(ref ex_route_ip, ref ex_route_port) == 0) {
+                        RouteHeader tmp_rth = new RouteHeader();
+                        tmp_rth.ip = P2pLib.IpToInt(ex_route_ip);
+                        tmp_rth.port = (ushort)(((ex_route_port & 0xff) << 8) |
+                                ((ex_route_port >> 8) & 0xff));
+                        byte[] tmp_bt = RouteHeader.StuctToByte(tmp_rth);
+                        header_bytes.AddRange(tmp_bt);
+                        append_size += 6;
+
+                    }
                     RouteHeader rth = new RouteHeader();
                     rth.ip = P2pLib.GetInstance().vpn_ip_;
                     rth.port = (ushort)((
@@ -985,7 +1000,7 @@ namespace Shadowsocks.Controller
                         ((P2pLib.GetInstance().vpn_port_ >> 8) & 0xff));
                     byte[] bt = RouteHeader.StuctToByte(rth);
                     header_bytes.AddRange(bt);
-                    append_size = 6;
+                    append_size += 6;
                 }
 
                 string pubkey = P2pLib.GetInstance().pubkey_;
