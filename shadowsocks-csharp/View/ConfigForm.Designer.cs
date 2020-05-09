@@ -46,12 +46,11 @@ namespace Shadowsocks.View
             this.label10 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.switch_WOC1 = new LimitlessUI.Switch_WOC();
             this.ConnectButton = new LimitlessUI.Button_WOC();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.button5 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,8 +59,8 @@ namespace Shadowsocks.View
             this.panel2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel2.AutoSize = true;
             this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel2.Location = new System.Drawing.Point(64, 204);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4);
+            this.panel2.Location = new System.Drawing.Point(77, 245);
+            this.panel2.Margin = new System.Windows.Forms.Padding(5);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(0, 0);
             this.panel2.TabIndex = 1;
@@ -77,10 +76,10 @@ namespace Shadowsocks.View
             this.cboPlanets.ForeColor = System.Drawing.SystemColors.Window;
             this.cboPlanets.FormattingEnabled = true;
             this.cboPlanets.IntegralHeight = false;
-            this.cboPlanets.Location = new System.Drawing.Point(19, 24);
-            this.cboPlanets.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.cboPlanets.Location = new System.Drawing.Point(23, 29);
+            this.cboPlanets.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.cboPlanets.Name = "cboPlanets";
-            this.cboPlanets.Size = new System.Drawing.Size(296, 66);
+            this.cboPlanets.Size = new System.Drawing.Size(354, 77);
             this.cboPlanets.TabIndex = 18;
             this.cboPlanets.SelectedIndexChanged += new System.EventHandler(this.cboPlanets_SelectedIndexChanged);
             // 
@@ -98,9 +97,10 @@ namespace Shadowsocks.View
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(19, 24);
+            this.button1.Location = new System.Drawing.Point(23, 29);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(24, 24);
+            this.button1.Size = new System.Drawing.Size(29, 29);
             this.button1.TabIndex = 23;
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Visible = false;
@@ -112,9 +112,10 @@ namespace Shadowsocks.View
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(169, 551);
+            this.button2.Location = new System.Drawing.Point(203, 661);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(146, 36);
+            this.button2.Size = new System.Drawing.Size(175, 43);
             this.button2.TabIndex = 24;
             this.button2.Text = "升级更新";
             this.button2.UseVisualStyleBackColor = false;
@@ -123,12 +124,13 @@ namespace Shadowsocks.View
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Times New Roman", 7F, System.Drawing.FontStyle.Bold);
+            this.label7.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold);
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(134)))), ((int)(((byte)(120)))));
-            this.label7.Location = new System.Drawing.Point(19, 121);
-            this.label7.MaximumSize = new System.Drawing.Size(200, 0);
+            this.label7.Location = new System.Drawing.Point(18, 134);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.MaximumSize = new System.Drawing.Size(220, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(190, 32);
+            this.label7.Size = new System.Drawing.Size(212, 47);
             this.label7.TabIndex = 26;
             this.label7.Text = "Tenon p2p网络正在保护你的IP和隐私";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -141,9 +143,10 @@ namespace Shadowsocks.View
             this.button4.FlatAppearance.BorderSize = 0;
             this.button4.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(11, 551);
+            this.button4.Location = new System.Drawing.Point(13, 661);
+            this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(140, 36);
+            this.button4.Size = new System.Drawing.Size(168, 43);
             this.button4.TabIndex = 27;
             this.button4.Text = "账户设置";
             this.button4.UseVisualStyleBackColor = false;
@@ -154,9 +157,10 @@ namespace Shadowsocks.View
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("黑体", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(134)))), ((int)(((byte)(120)))));
-            this.label6.Location = new System.Drawing.Point(15, 514);
+            this.label6.Location = new System.Drawing.Point(18, 617);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(78, 17);
+            this.label6.Size = new System.Drawing.Size(86, 20);
             this.label6.TabIndex = 28;
             this.label6.Text = "Balance";
             // 
@@ -164,9 +168,10 @@ namespace Shadowsocks.View
             // 
             this.label9.AutoSize = true;
             this.label9.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label9.Location = new System.Drawing.Point(196, 514);
+            this.label9.Location = new System.Drawing.Point(235, 617);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(119, 15);
+            this.label9.Size = new System.Drawing.Size(134, 18);
             this.label9.TabIndex = 30;
             this.label9.Text = "Due in 2 days.";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -176,9 +181,10 @@ namespace Shadowsocks.View
             // 
             this.label10.AutoSize = true;
             this.label10.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label10.Location = new System.Drawing.Point(99, 514);
+            this.label10.Location = new System.Drawing.Point(119, 617);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(79, 15);
+            this.label10.Size = new System.Drawing.Size(89, 18);
             this.label10.TabIndex = 32;
             this.label10.Text = "10000 Ten";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -188,11 +194,12 @@ namespace Shadowsocks.View
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Times New Roman", 7F);
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.label8.Location = new System.Drawing.Point(64, 399);
-            this.label8.MaximumSize = new System.Drawing.Size(200, 0);
-            this.label8.MinimumSize = new System.Drawing.Size(200, 0);
+            this.label8.Location = new System.Drawing.Point(77, 479);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.MaximumSize = new System.Drawing.Size(240, 0);
+            this.label8.MinimumSize = new System.Drawing.Size(240, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(200, 18);
+            this.label8.Size = new System.Drawing.Size(240, 19);
             this.label8.TabIndex = 33;
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label8.UseCompatibleTextRendering = true;
@@ -203,43 +210,17 @@ namespace Shadowsocks.View
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Times New Roman", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))));
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(134)))), ((int)(((byte)(120)))));
-            this.label12.Location = new System.Drawing.Point(15, 467);
-            this.label12.MaximumSize = new System.Drawing.Size(300, 0);
-            this.label12.MinimumSize = new System.Drawing.Size(300, 0);
+            this.label12.Location = new System.Drawing.Point(18, 560);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.MaximumSize = new System.Drawing.Size(360, 0);
+            this.label12.MinimumSize = new System.Drawing.Size(360, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(300, 22);
+            this.label12.Size = new System.Drawing.Size(360, 26);
             this.label12.TabIndex = 36;
             this.label12.Text = "Share a friend and get one day of free traffic.";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label12.UseCompatibleTextRendering = true;
             this.label12.Click += new System.EventHandler(this.label12_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = global::Shadowsocks.Properties.Resources.join_us;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.ErrorImage = global::Shadowsocks.Properties.Resources.join_us;
-            this.pictureBox1.InitialImage = global::Shadowsocks.Properties.Resources.join_us;
-            this.pictureBox1.Location = new System.Drawing.Point(217, 106);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(84, 47);
-            this.pictureBox1.TabIndex = 37;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackgroundImage = global::Shadowsocks.Properties.Resources.vip;
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.ErrorImage = global::Shadowsocks.Properties.Resources.join_us;
-            this.pictureBox2.InitialImage = global::Shadowsocks.Properties.Resources.join_us;
-            this.pictureBox2.Location = new System.Drawing.Point(15, 376);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(97, 54);
-            this.pictureBox2.TabIndex = 38;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Visible = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // switch_WOC1
             // 
@@ -247,13 +228,14 @@ namespace Shadowsocks.View
             this.switch_WOC1.Font = new System.Drawing.Font("宋体", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.switch_WOC1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(134)))), ((int)(((byte)(120)))));
             this.switch_WOC1.IsOn = true;
-            this.switch_WOC1.Location = new System.Drawing.Point(18, 18);
+            this.switch_WOC1.Location = new System.Drawing.Point(22, 22);
+            this.switch_WOC1.Margin = new System.Windows.Forms.Padding(4);
             this.switch_WOC1.Name = "switch_WOC1";
             this.switch_WOC1.OffColor = System.Drawing.Color.Gainsboro;
             this.switch_WOC1.OffText = "已关闭";
             this.switch_WOC1.OnColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(134)))), ((int)(((byte)(120)))));
             this.switch_WOC1.OnText = "已打开";
-            this.switch_WOC1.Size = new System.Drawing.Size(92, 24);
+            this.switch_WOC1.Size = new System.Drawing.Size(110, 29);
             this.switch_WOC1.TabIndex = 21;
             this.switch_WOC1.TextEnabled = true;
             this.switch_WOC1.Visible = false;
@@ -271,7 +253,8 @@ namespace Shadowsocks.View
             this.ConnectButton.Font3 = new System.Drawing.Font("宋体", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ConnectButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.ConnectButton.IgnoreHeight = true;
-            this.ConnectButton.Location = new System.Drawing.Point(64, 170);
+            this.ConnectButton.Location = new System.Drawing.Point(77, 204);
+            this.ConnectButton.Margin = new System.Windows.Forms.Padding(4);
             this.ConnectButton.Name = "ConnectButton";
             this.ConnectButton.Offset = new System.Drawing.Point(0, 0);
             this.ConnectButton.OnHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(224)))), ((int)(((byte)(208)))));
@@ -280,7 +263,7 @@ namespace Shadowsocks.View
             this.ConnectButton.ProgressBackColor = System.Drawing.Color.Silver;
             this.ConnectButton.ProgressColor = System.Drawing.Color.Lime;
             this.ConnectButton.ProgressLineThikness = 9F;
-            this.ConnectButton.Size = new System.Drawing.Size(200, 200);
+            this.ConnectButton.Size = new System.Drawing.Size(240, 240);
             this.ConnectButton.Style = LimitlessUI.Button_WOC.StyleEnum.Style3;
             this.ConnectButton.TabIndex = 19;
             this.ConnectButton.Text = "Connected";
@@ -291,6 +274,21 @@ namespace Shadowsocks.View
             this.ConnectButton.Value = 290F;
             this.ConnectButton.Click += new System.EventHandler(this.Connect_Click);
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackgroundImage = global::Shadowsocks.Properties.Resources.vip;
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox2.ErrorImage = global::Shadowsocks.Properties.Resources.join_us;
+            this.pictureBox2.InitialImage = global::Shadowsocks.Properties.Resources.join_us;
+            this.pictureBox2.Location = new System.Drawing.Point(238, 449);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(116, 65);
+            this.pictureBox2.TabIndex = 38;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Visible = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
             // button5
             // 
             this.button5.BackColor = System.Drawing.Color.Transparent;
@@ -299,23 +297,41 @@ namespace Shadowsocks.View
             this.button5.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.button5.FlatAppearance.BorderSize = 0;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Location = new System.Drawing.Point(15, 376);
+            this.button5.Location = new System.Drawing.Point(92, 449);
+            this.button5.Margin = new System.Windows.Forms.Padding(4);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(97, 63);
+            this.button5.Size = new System.Drawing.Size(116, 76);
             this.button5.TabIndex = 40;
             this.button5.UseVisualStyleBackColor = false;
+            this.button5.Visible = false;
             this.button5.Click += new System.EventHandler(this.button5_Click_1);
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.Transparent;
+            this.button3.BackgroundImage = global::Shadowsocks.Properties.Resources.join_us;
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Location = new System.Drawing.Point(225, 108);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(153, 99);
+            this.button3.TabIndex = 41;
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
             // ConfigForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(330, 600);
+            this.ClientSize = new System.Drawing.Size(396, 720);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label10);
@@ -330,15 +346,14 @@ namespace Shadowsocks.View
             this.Controls.Add(this.cboPlanets);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ConfigForm";
-            this.Padding = new System.Windows.Forms.Padding(15);
+            this.Padding = new System.Windows.Forms.Padding(18);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TenonVPN";
             this.Load += new System.EventHandler(this.ConfigForm_Load_1);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -360,9 +375,9 @@ namespace Shadowsocks.View
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button3;
     }
 }
 

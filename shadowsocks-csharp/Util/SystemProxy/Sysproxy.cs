@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace Shadowsocks.Util.SystemProxy
 {
@@ -18,6 +19,8 @@ namespace Shadowsocks.Util.SystemProxy
 
         private readonly static string[] _lanIP = {
             "<local>",
+            "www.baidu.com",
+            "*.csdn.net",
             "localhost",
             "127.*",
             "10.*",
@@ -50,6 +53,8 @@ namespace Shadowsocks.Util.SystemProxy
         //  <bypass-list><CR-LF>
         //  <pac-url>
         private static SysproxyConfig _userSettings = null;
+        private static string _realBypassString = "";
+        private static string _proxyServer = "";
 
         enum RET_ERRORS : int
         {
@@ -93,7 +98,8 @@ namespace Shadowsocks.Util.SystemProxy
                 customBypassList.AddRange(_lanIP);
                 string[] realBypassList = customBypassList.Distinct().ToArray();
                 string realBypassString = string.Join(";", realBypassList);
-
+                _realBypassString = realBypassString;
+                _proxyServer = proxyServer;
                 arguments = global
                     ? $"global {proxyServer} {realBypassString}"
                     : $"pac {pacURL}";
@@ -134,7 +140,7 @@ namespace Shadowsocks.Util.SystemProxy
             return true;
         }
 
-        private static void ExecSysproxy(string arguments)
+        public static void ExecSysproxy(string arguments)
         {
             // using event to avoid hanging when redirect standard output/error
             // ref: https://stackoverflow.com/questions/139593/processstartinfo-hanging-on-waitforexit-why

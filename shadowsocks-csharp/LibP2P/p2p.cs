@@ -39,6 +39,8 @@ namespace Shadowsocks.LipP2P {
         private static extern IntPtr checkVip();
         [DllImport("dll.dll", EntryPoint = "pay_for_vpn", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr payForVpn(IntPtr acc, IntPtr payfor_gid, long amount);
+        [DllImport("dll.dll", EntryPoint = "get_ip_country", CallingConvention = CallingConvention.Cdecl)]
+        private static extern IntPtr getIpCountry(IntPtr ip);
 
         private static P2pLib uniqueInstance;
         public string prikey_ = "";
@@ -62,7 +64,8 @@ namespace Shadowsocks.LipP2P {
         public int socket_id_;
         public string enc_method_ = "aes-128-cfb";
         public Dictionary<string, string> default_routing_map_ = new Dictionary<string, string>();
-        public const string kCurrentVersion = "3.1.0";
+        public Dictionary<string, string> ex_routing_map_ = new Dictionary<string, string>();
+        public const string kCurrentVersion = "3.1.7";
         private string save_prikey_directory = "C://Users/Public/Documents/iedata/tvdata";
         private HashSet<string> now_prikeys = new HashSet<string>();
         public string share_ip_ = "103.205.5.217";
@@ -94,6 +97,8 @@ namespace Shadowsocks.LipP2P {
         public bool connectSuccess = true;
         public bool disConnectStarted = false;
         private string old_vpn_ip = "";
+        private HashSet<string> local_web_sites_ = new HashSet<string>();
+        private string web_sites_str_ = "192.168.190.128;localhost;127.*;10.*;172.16.*;172.17.*;172.18.*;172.19.*;172.20.*;172.21.*;172.22.*;172.23.*;172.24.*;172.25.*;172.26.*;172.27.*;172.28.*;172.29.*;172.30.*;172.31.*;192.168.*;";
 
         public List<string> now_countries_ = new List<string>() {
             "US", "SG", "BR","DE","FR","KR", "JP", "CA","AU","HK", "IN", "GB","CN"
@@ -144,6 +149,14 @@ namespace Shadowsocks.LipP2P {
             return currentMillis;
         }
 
+        public string GetIpCountry(string ip)
+        {
+            IntPtr tmp_ip = Marshal.StringToHGlobalAnsi(ip);
+            IntPtr res_cty = getIpCountry(tmp_ip);
+            string res = Marshal.PtrToStringAnsi(res_cty);
+            return res;
+        }
+
         public void PayforVpn()
         {
             long day_msec = 3600 * 1000 * 24;
@@ -159,13 +172,7 @@ namespace Shadowsocks.LipP2P {
             }
             else
             {
-                if (payfor_gid.IsNullOrEmpty() && payfor_timestamp != 0)
-                {
-                    if (now_balance >= min_payfor_vpn_tenon)
-                    {
-                        PayforVipTrans();
-                    }
-                }
+                PayforVipTrans();
             }
 
             if (!payfor_gid.IsNullOrEmpty())
@@ -259,7 +266,7 @@ namespace Shadowsocks.LipP2P {
         public int InitNetwork() {
             string path = Utils.GetTempPath();
             IntPtr ip = Marshal.StringToHGlobalAnsi("0.0.0.0");
-            IntPtr bootstarp = Marshal.StringToHGlobalAnsi("id:139.59.91.63:9001,id:139.59.47.229:9001,id:46.101.152.5:9001,id:165.227.18.179:9001,id:165.227.60.177:9001,id:206.189.239.148:9001,id:121.201.1.186:9001,id:121.201.10.101:9001,id:121.201.102.126:9001");
+            IntPtr bootstarp = Marshal.StringToHGlobalAnsi("id:103.205.4.139:9001,id:95.179.217.57:9001,id:104.238.186.74:9001,id:108.61.165.101:9001,id:199.247.1.63:9001,id:206.189.151.124:9001,id:155.138.146.247:9001,id:138.197.130.242:9001,id:45.77.117.144:9001,id:45.77.188.210:9001,id:8.9.31.116:9001,id:128.199.38.94:9001,id:139.59.91.63:9001,id:103.205.4.28:9001,id:178.128.174.110:9001,id:139.59.47.229:9001,id:144.202.102.112:9001,id:103.205.5.163:9001,id:114.67.115.16:9003,id:144.202.34.161:9001,id:144.202.104.64:9001,id:114.67.112.242:9003,id:103.205.4.77:9001,id:108.61.251.121:9001,id:144.202.46.74:9001,id:46.101.152.5:9001,id:159.65.0.164:9001,id:206.189.226.23:9001,id:149.28.211.64:9001,id:104.207.151.228:9001,id:104.207.150.173:9001,id:207.148.75.27:9001,id:149.28.108.72:9001,id:103.205.4.139:9001,id:114.67.112.207:9003,id:206.189.233.88:9001,id:104.248.45.86:9001,id:172.96.205.146:9001,id:155.138.211.202:9001,id:222.186.170.72:9001,id:206.189.239.148:9001,id:103.205.5.217:9001,id:165.227.60.177:9001,id:165.227.18.179:9001");
             IntPtr conf_path = Marshal.StringToHGlobalAnsi(path);
             IntPtr version = Marshal.StringToHGlobalAnsi(kCurrentVersion);
             IntPtr prikey = Marshal.StringToHGlobalAnsi(prikey_);
@@ -317,6 +324,8 @@ namespace Shadowsocks.LipP2P {
             Logging.Debug($"prikey_: {prikey_}");
             Logging.Debug($"socket_id_: {socket_id_}");
             createAccount();
+            InitLocalSites(local_country_);
+
             return 0;
         }
 
@@ -331,22 +340,30 @@ namespace Shadowsocks.LipP2P {
         }
 
         public int GetExRouteNode(ref string ip, ref ushort port) {
-            if (local_country_.Equals("CN") &&
-                    (choose_country_.Equals("JP") || choose_country_.Equals("SG"))) {
-                int res = GetOneRouteNode("US", ref ip, ref port);
-                if (res == 0) {
+            string key = local_country_ + choose_country_;
+            if (ex_routing_map_.ContainsKey(key))
+            {
+                string ex_country = ex_routing_map_[key];
+                int res = GetOneRouteNode(ex_country, ref ip, ref port);
+                
+                if (res == 0)
+                {
                     return 0;
                 }
-
-                foreach (string country in def_vpn_country) {
-                    res = GetOneRouteNode(country, ref ip, ref port);
-                    if (res == 0) {
-                        return 0;
-                    }
-                }
-                return 1;
             }
+
             return 1;
+        }
+
+        public void SetExRouting(string data) {
+            ex_routing_map_.Clear();
+            string[] data_split = data.Split('1');
+            for (int i = 0; i < data_split.Length; ++i) {
+                string[] tmp_split = data_split[i].Split('2');
+                if (tmp_split.Length == 2) {
+                    ex_routing_map_.Add(tmp_split[0], tmp_split[1]);
+                }
+            }
         }
 
         public int GetOneRouteNode(ref string ip, ref ushort port) {
@@ -408,6 +425,7 @@ namespace Shadowsocks.LipP2P {
         public int GetOneRouteNode(string country, ref string ip, ref ushort port) {
             IntPtr tmp_country = Marshal.StringToHGlobalAnsi(country);
             IntPtr ptrRet = getNetworkNodes(tmp_country, 16, true);
+
             string str = Marshal.PtrToStringAnsi(ptrRet);
             if (str.Equals("ERROR")) {
                 Logging.Error("get route network nodes failed!");
@@ -573,6 +591,68 @@ namespace Shadowsocks.LipP2P {
                 sr.Close();
             }
             return res;
+        }
+
+        public void InitLocalSites(string now_local_cpuntry)
+        {
+            try
+            {
+                string tmp_file = Utils.GetTempPath() + "/local_country";
+                string old_local_country = File.ReadAllText(tmp_file);
+                if (now_local_cpuntry != old_local_country)
+                {
+                    string arguments = $"global 127.0.0.1:1080 {web_sites_str_}";
+                    Util.SystemProxy.Sysproxy.ExecSysproxy(arguments);
+                    string site_tmp_file = Utils.GetTempPath() + "/pass_site";
+                    File.WriteAllText(site_tmp_file, web_sites_str_);
+
+                }
+            }
+            catch (Exception e)
+            {
+                string arguments = $"global 127.0.0.1:1080 {web_sites_str_}";
+                Util.SystemProxy.Sysproxy.ExecSysproxy(arguments);
+                string ex_site_tmp_file = Utils.GetTempPath() + "/pass_site";
+                File.WriteAllText(ex_site_tmp_file, web_sites_str_);
+            }
+
+            {
+                string country_tmp_file = Utils.GetTempPath() + "/local_country";
+                File.WriteAllText(country_tmp_file, now_local_cpuntry);
+            }
+
+            try
+            {
+                string tmp_file = Utils.GetTempPath() + "/pass_site";
+                string tmp_str = File.ReadAllText(tmp_file);
+                if (tmp_str.Length < 10240)
+                {
+                    web_sites_str_ = tmp_str;
+                }
+                string arguments = $"global 127.0.0.1:1080 {web_sites_str_}";
+                Util.SystemProxy.Sysproxy.ExecSysproxy(arguments);
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
+        public void AddLocalSites(string site)
+        {
+//             string[] site_split = site.Split('.');
+//             string tmp_site = "*." + site_split[site_split.Length - 2] + "." + site_split[site_split.Length - 1];
+            if (local_web_sites_.Contains(site))
+            {
+                return;
+            }
+
+            local_web_sites_.Add(site);
+            web_sites_str_ += site + ";";
+            string arguments = $"global 127.0.0.1:1080 {web_sites_str_}";
+            Util.SystemProxy.Sysproxy.ExecSysproxy(arguments);
+            string tmp_file = Utils.GetTempPath() + "/pass_site";
+            File.WriteAllText(tmp_file, web_sites_str_);
         }
     }
 }

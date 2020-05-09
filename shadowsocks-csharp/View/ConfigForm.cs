@@ -77,7 +77,7 @@ namespace Shadowsocks.View
 
             this.button2.Text = I18N.GetString("UPGRADE");
             this.button4.Text = I18N.GetString("SETTINGS");
-            this.label7.Text = I18N.GetString("Tenon p2p network protecting your ip and privacy.");
+            this.label7.Text = I18N.GetString("Tenon p2p network protecting your privacy.");
             this.label6.Text = I18N.GetString("Balance");
             this.label9.Text = I18N.GetString("");
             this.label10.Text = I18N.GetString("waiting server...");
@@ -349,6 +349,7 @@ namespace Shadowsocks.View
 
                 if (item[0].Equals("windows"))
                 {
+
                     if (String.Compare(item[1], P2pLib.kCurrentVersion) <= 0)
                     {
                         if (show_message)
@@ -378,6 +379,11 @@ namespace Shadowsocks.View
                         P2pLib.GetInstance().buy_tenon_ip_ = item[1];
                     }
                 }
+
+                if (item[0].Equals("er"))
+                {
+                    P2pLib.GetInstance().SetExRouting(item[1]);
+                }
             }
 
             if (!has_windows)
@@ -393,6 +399,10 @@ namespace Shadowsocks.View
                 return;
             }
 
+            if (!show_message)
+            {
+                return;
+            }
             upgrade_is_shown = true;
             if (upgradeForm != null)
             {
@@ -510,6 +520,12 @@ namespace Shadowsocks.View
         private void button5_Click_1(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("http://" + P2pLib.GetInstance().buy_tenon_ip_ + "/chongzhi/" + P2pLib.GetInstance().account_id_);
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/tenondvpn/tenonvpn-join");
+
         }
     }
 }

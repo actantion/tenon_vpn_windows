@@ -370,6 +370,8 @@ namespace Shadowsocks.View
             P2pLib.GetInstance().connectSuccess = false;
             P2pLib.GetInstance().connectStarted = false;
             P2pLib.GetInstance().disConnectStarted = false;
+            Process.GetCurrentProcess().Kill();
+            System.Environment.Exit(0);
             _notifyIcon.Visible = false;
             Application.Exit();
         }

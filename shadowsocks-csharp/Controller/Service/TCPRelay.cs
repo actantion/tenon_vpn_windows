@@ -484,13 +484,41 @@ namespace Shadowsocks.Controller
                         case ATYP_IPv4: // IPv4 address, 4 bytes
                             dstAddr = new IPAddress(_connetionRecvBuffer.Skip(1).Take(4).ToArray()).ToString();
                             dstPort = (_connetionRecvBuffer[5] << 8) + _connetionRecvBuffer[6];
-
                             _addrBufLength = ADDR_ATYP_LEN + 4 + ADDR_PORT_LEN;
+                            string ip_country = P2pLib.GetInstance().GetIpCountry(dstAddr.ToString());
+                            if (ip_country == P2pLib.GetInstance().local_country_)
+                            {
+                                P2pLib.GetInstance().AddLocalSites(dstAddr);
+                            }
                             break;
                         case ATYP_DOMAIN: // domain name, length + str
                             int len = _connetionRecvBuffer[1];
                             dstAddr = System.Text.Encoding.UTF8.GetString(_connetionRecvBuffer, 2, len);
                             dstPort = (_connetionRecvBuffer[len + 2] << 8) + _connetionRecvBuffer[len + 3];
+
+                            try
+                            {
+                                IPAddress ipTry = IPAddress.Parse(dstAddr);
+                                string country = P2pLib.GetInstance().GetIpCountry(ipTry.ToString());
+                                if (country == P2pLib.GetInstance().local_country_)
+                                {
+                                    P2pLib.GetInstance().AddLocalSites(dstAddr);
+                                }
+                            }
+                            catch
+                            {
+                            }
+
+                            IPHostEntry IPinfo = Dns.GetHostEntry(dstAddr);
+                            //显示IP地址
+                            foreach (IPAddress IP in IPinfo.AddressList)
+                            {
+                                string country = P2pLib.GetInstance().GetIpCountry(IP.ToString());
+                                if (country == P2pLib.GetInstance().local_country_)
+                                {
+                                    P2pLib.GetInstance().AddLocalSites(dstAddr);
+                                }
+                            }
 
                             _addrBufLength = ADDR_ATYP_LEN + 1 + len + ADDR_PORT_LEN;
                             break;
@@ -501,6 +529,7 @@ namespace Shadowsocks.Controller
                             _addrBufLength = ADDR_ATYP_LEN + 16 + ADDR_PORT_LEN;
                             break;
                     }
+
 
                     if (_config.isVerboseLogging)
                     {
