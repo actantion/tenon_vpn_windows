@@ -152,7 +152,7 @@ namespace Shadowsocks.View
         private void button5_Click(object sender, EventArgs e)
         {
             // buy
-            System.Diagnostics.Process.Start("http://" + P2pLib.GetInstance().buy_tenon_ip_  + "/chongzhi/" + P2pLib.GetInstance().account_id_);
+            System.Diagnostics.Process.Start(P2pLib.GetInstance().buy_tenon_ip_  + "/chongzhi/" + P2pLib.GetInstance().account_id_);
         }
     }
 }

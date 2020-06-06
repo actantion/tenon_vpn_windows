@@ -48,8 +48,8 @@ namespace Shadowsocks.Controller
                 if (connect_times_ > 20)
                 {
                     connect_times_ = 0;
-                    P2pLib.GetInstance().ServerStatusChange("cnn");
-                    return false;
+//                     P2pLib.GetInstance().ServerStatusChange("cnn");
+//                     return false;
                 }
             }
             if (socket.ProtocolType != ProtocolType.Tcp

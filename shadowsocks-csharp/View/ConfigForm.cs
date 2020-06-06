@@ -21,6 +21,7 @@ namespace Shadowsocks.View
 
         private int check_vip_times = 0;
         private bool upgrade_is_shown = false;
+        private string upgrade_shown_version = "";
 
         public ConfigForm(ShadowsocksController controller)
         {
@@ -98,6 +99,7 @@ namespace Shadowsocks.View
 
         public void ResetBalance(object obj)
         {
+            autoShowUpgrade();
             checkServerInfo(false);
             if (!P2pLib.GetInstance().server_status.Equals("ok"))
             {
@@ -167,18 +169,18 @@ namespace Shadowsocks.View
                 P2pLib.GetInstance().PayforVpn();
             }
 
-            if (P2pLib.GetInstance().vip_left_days == -1 &&
-                    P2pLib.GetInstance().now_balance != -1)
-            {
-                this.label9.Text = "";
-                pictureBox2.Visible = false;
-                button5.Visible = true;
-            }
+//             if (P2pLib.GetInstance().vip_left_days == -1 &&
+//                     P2pLib.GetInstance().now_balance != -1)
+//             {
+//                 this.label9.Text = "";
+//                 pictureBox2.Visible = false;
+//                 button5.Visible = true;
+//             }
 
             if (P2pLib.GetInstance().vip_left_days >= 0)
             {
-                pictureBox2.Visible = true;
-                button5.Visible = false;
+//                 pictureBox2.Visible = true;
+//                 button5.Visible = false;
                 this.label9.Text = I18N.GetString("Due in ") + P2pLib.GetInstance().vip_left_days + I18N.GetString("days");
             }
         }
@@ -324,6 +326,66 @@ namespace Shadowsocks.View
             Utils.ReleaseMemory(true);
         }
 
+        private void autoShowUpgrade()
+        {
+            string ver = P2pLib.GetInstance().GetLatestVer();
+            if (ver.IsNullOrEmpty())
+            {
+                return;
+            }
+
+            bool has_windows = false;
+            string[] ver_split = ver.Split(',');
+            for (int i = 0; i < ver_split.Length; ++i)
+            {
+                string[] item = ver_split[i].Split(';');
+                if (item.Length < 3)
+                {
+                    continue;
+                }
+
+                if (item[0].Equals("windows"))
+                {
+
+                    if (String.Compare(item[1], P2pLib.kCurrentVersion) <= 0)
+                    {
+                            return;
+                    }
+                    else
+                    {
+                        if (String.Compare(item[1], upgrade_shown_version) != 0)
+                        {
+                            upgrade_shown_version = item[1];
+                            has_windows = true;
+                        }
+                    }
+                }
+            }
+
+            if (!has_windows)
+            {
+                return;
+            }
+
+            if (upgrade_is_shown)
+            {
+                return;
+            }
+
+            upgrade_is_shown = true;
+            if (upgradeForm != null)
+            {
+                upgradeForm.Activate();
+            }
+            else
+            {
+                upgradeForm = new VersionControl(ver);
+                upgradeForm.Show();
+                upgradeForm.Activate();
+                upgradeForm.FormClosed += tmp_upgradeForm_FormClosed;
+            }
+        }
+
         private void checkServerInfo(bool show_message)
         {
             string ver = P2pLib.GetInstance().GetLatestVer();
@@ -368,7 +430,14 @@ namespace Shadowsocks.View
                 {
                     if (!item[1].IsNullOrEmpty())
                     {
-                        P2pLib.GetInstance().share_ip_ = item[1];
+                        if (item[1].StartsWith("http"))
+                        {
+                            P2pLib.GetInstance().share_ip_ = item[1];
+                        }
+                        else
+                        {
+                            P2pLib.GetInstance().share_ip_ = "http://" + item[1];
+                        }
                     }
                 }
 
@@ -376,7 +445,14 @@ namespace Shadowsocks.View
                 {
                     if (!item[1].IsNullOrEmpty())
                     {
-                        P2pLib.GetInstance().buy_tenon_ip_ = item[1];
+                        if (item[1].StartsWith("http"))
+                        {
+                            P2pLib.GetInstance().buy_tenon_ip_ = item[1];
+                        }
+                        else
+                        {
+                            P2pLib.GetInstance().buy_tenon_ip_ = "http://" + item[1];
+                        }
                     }
                 }
 
@@ -480,13 +556,13 @@ namespace Shadowsocks.View
         private void button5_Click(object sender, EventArgs e)
         {
             // goto brower
-            System.Diagnostics.Process.Start("http://" + P2pLib.GetInstance().buy_tenon_ip_ + "/chongzhi/" + P2pLib.GetInstance().account_id_);
+            System.Diagnostics.Process.Start(P2pLib.GetInstance().buy_tenon_ip_ + "/chongzhi/" + P2pLib.GetInstance().account_id_);
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
             // share
-            Clipboard.SetDataObject(I18N.GetString("Decentralized VPN, safe, reliable and high speed.") + "\n http://" + P2pLib.GetInstance().share_ip_ + "?id=" + P2pLib.GetInstance().account_id_);
+            Clipboard.SetDataObject(P2pLib.GetInstance().share_ip_ + "?id=" + P2pLib.GetInstance().account_id_);
             MessageBox.Show(I18N.GetString("Copy sharing link succeeded."));
         }
 
@@ -498,7 +574,7 @@ namespace Shadowsocks.View
         private void label12_Click(object sender, EventArgs e)
         {
             // share
-            Clipboard.SetDataObject(I18N.GetString("Decentralized VPN, safe, reliable and high speed.") + "\n http://" + P2pLib.GetInstance().share_ip_ + "?id=" + P2pLib.GetInstance().account_id_);
+            Clipboard.SetDataObject(P2pLib.GetInstance().share_ip_ + "?id=" + P2pLib.GetInstance().account_id_);
             MessageBox.Show(I18N.GetString("Copy sharing link succeeded."));
         }
 
@@ -514,12 +590,12 @@ namespace Shadowsocks.View
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://" + P2pLib.GetInstance().buy_tenon_ip_ + "/chongzhi/" + P2pLib.GetInstance().account_id_);
+            System.Diagnostics.Process.Start(P2pLib.GetInstance().buy_tenon_ip_ + "/chongzhi/" + P2pLib.GetInstance().account_id_);
         }
 
         private void button5_Click_1(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://" + P2pLib.GetInstance().buy_tenon_ip_ + "/chongzhi/" + P2pLib.GetInstance().account_id_);
+            System.Diagnostics.Process.Start(P2pLib.GetInstance().buy_tenon_ip_ + "/chongzhi/" + P2pLib.GetInstance().account_id_);
         }
 
         private void button3_Click_1(object sender, EventArgs e)

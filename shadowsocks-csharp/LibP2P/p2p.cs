@@ -65,11 +65,11 @@ namespace Shadowsocks.LipP2P {
         public string enc_method_ = "aes-128-cfb";
         public Dictionary<string, string> default_routing_map_ = new Dictionary<string, string>();
         public Dictionary<string, string> ex_routing_map_ = new Dictionary<string, string>();
-        public const string kCurrentVersion = "3.1.7";
+        public const string kCurrentVersion = "4.0.0";
         private string save_prikey_directory = "C://Users/Public/Documents/iedata/tvdata";
         private HashSet<string> now_prikeys = new HashSet<string>();
-        public string share_ip_ = "103.205.5.217";
-        public string buy_tenon_ip_ = "222.186.170.72";
+        public string share_ip_ = "https://www.tenonvpn.net";
+        public string buy_tenon_ip_ = "https://www.tenonvpn.net";
 
         public long now_balance = -1;
         public List<string> payfor_vpn_accounts_list = new List<string>()
@@ -326,6 +326,7 @@ namespace Shadowsocks.LipP2P {
             createAccount();
             InitLocalSites(local_country_);
 
+            Logging.Info("init network success!");
             return 0;
         }
 
