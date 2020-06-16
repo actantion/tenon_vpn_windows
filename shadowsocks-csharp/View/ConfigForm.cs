@@ -53,6 +53,7 @@ namespace Shadowsocks.View
                 new ImageAndText(Resources.sg, "Singapore" + '\n' + ran.Next(100, 1000) + " nodes", font),
                 new ImageAndText(Resources.br, "Brazil" + '\n' + ran.Next(100, 1000) + " nodes", font),
                 new ImageAndText(Resources.de, "Germany" + '\n' + ran.Next(100, 1000) + " nodes", font),
+                new ImageAndText(Resources.nl, "Netherlands" + '\n' + ran.Next(100, 1000) + " nodes", font),
                 new ImageAndText(Resources.fr, "France" + '\n' + ran.Next(100, 1000) + " nodes", font),
                 new ImageAndText(Resources.kr, "Korea" + '\n' + ran.Next(100, 1000) + " nodes", font),
                 new ImageAndText(Resources.jp, "Japan" + '\n' + ran.Next(100, 1000) + " nodes", font),

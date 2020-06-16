@@ -22,3 +22,4 @@ E:\tenon_vpn_windows\shadowsocks-csharp\obj\x86\Release\shadowsocks-csharp.cspro
 E:\tenon_vpn_windows\shadowsocks-csharp\obj\x86\Release\shadowsocks-csharp.csproj.CopyComplete
 E:\tenon_vpn_windows\shadowsocks-csharp\obj\x86\Release\TenonVPN.exe
 E:\tenon_vpn_windows\shadowsocks-csharp\obj\x86\Release\TenonVPN.pdb
+E:\tenon_vpn_windows\shadowsocks-csharp\obj\x86\Release\shadowsocks-csharp.csprojAssemblyReference.cache

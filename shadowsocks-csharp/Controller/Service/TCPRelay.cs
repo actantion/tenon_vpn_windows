@@ -485,11 +485,19 @@ namespace Shadowsocks.Controller
                             dstAddr = new IPAddress(_connetionRecvBuffer.Skip(1).Take(4).ToArray()).ToString();
                             dstPort = (_connetionRecvBuffer[5] << 8) + _connetionRecvBuffer[6];
                             _addrBufLength = ADDR_ATYP_LEN + 4 + ADDR_PORT_LEN;
-                            string ip_country = P2pLib.GetInstance().GetIpCountry(dstAddr.ToString());
-                            if (ip_country == P2pLib.GetInstance().local_country_)
+                            try
                             {
-                                P2pLib.GetInstance().AddLocalSites(dstAddr);
+                                string ip_country = P2pLib.GetInstance().GetIpCountry(dstAddr.ToString());
+                                if (ip_country == P2pLib.GetInstance().local_country_)
+                                {
+                                    P2pLib.GetInstance().AddLocalSites(dstAddr);
+                                }
                             }
+                            catch
+                            {
+                                Logging.Info("DDDD FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF 11111 country info: ");
+                            }
+
                             break;
                         case ATYP_DOMAIN: // domain name, length + str
                             int len = _connetionRecvBuffer[1];
@@ -498,26 +506,40 @@ namespace Shadowsocks.Controller
 
                             try
                             {
-                                IPAddress ipTry = IPAddress.Parse(dstAddr);
-                                string country = P2pLib.GetInstance().GetIpCountry(ipTry.ToString());
-                                if (country == P2pLib.GetInstance().local_country_)
+                                try
                                 {
-                                    P2pLib.GetInstance().AddLocalSites(dstAddr);
+                                    IPAddress ipTry = IPAddress.Parse(dstAddr);
+                                    string country = P2pLib.GetInstance().GetIpCountry(ipTry.ToString());
+                                    if (country == P2pLib.GetInstance().local_country_)
+                                    {
+                                        P2pLib.GetInstance().AddLocalSites(dstAddr);
+                                    }
                                 }
-                            }
-                            catch
-                            {
-                            }
+                                catch(Exception e)
+                                {
+                                }
 
-                            IPHostEntry IPinfo = Dns.GetHostEntry(dstAddr);
-                            //显示IP地址
-                            foreach (IPAddress IP in IPinfo.AddressList)
-                            {
-                                string country = P2pLib.GetInstance().GetIpCountry(IP.ToString());
-                                if (country == P2pLib.GetInstance().local_country_)
+                                IPHostEntry IPinfo = Dns.GetHostEntry(dstAddr);
+                                //显示IP地址
+                                int valid_count = 0;
+                                foreach (IPAddress IP in IPinfo.AddressList)
+                                {
+                                    string country = P2pLib.GetInstance().GetIpCountry(IP.ToString());
+                                    if (country == P2pLib.GetInstance().local_country_)
+                                    {
+                                        valid_count++;
+                                    }
+                                }
+
+                                if (valid_count > (IPinfo.AddressList.Length / 2))
                                 {
                                     P2pLib.GetInstance().AddLocalSites(dstAddr);
                                 }
+                            }
+                            catch(Exception e)
+                            {
+                                Logging.Info("DDDD FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF 0000 country info: " + e.ToString());
+
                             }
 
                             _addrBufLength = ADDR_ATYP_LEN + 1 + len + ADDR_PORT_LEN;
